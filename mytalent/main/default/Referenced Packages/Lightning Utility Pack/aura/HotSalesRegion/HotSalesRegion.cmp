@@ -1,0 +1,29 @@
+<aura:component access="global" controller="lighten.AuraDashboardController" implements="forceCommunity:availableForAllPageTypes,force:appHostable,flexipage:availableForAllPageTypes">
+    
+    <aura:attribute access="global" name="title" type="String" description="Heading Text" default="Sales from Regions"/>
+    <aura:attribute access="global" name="regions" type="lighten.AuraSalesStats" description="Countries name and their prospects"/>
+    <aura:attribute access="global" name="countrynames" type="String" description="Countries name to filter" default="United States"/>
+    <aura:attribute access="global" name="statenames" type="String" description="State name to filter" default="California"/>
+    <aura:attribute access="global" name="currencySymbol" type="String" description="Currency Symbol to Show before Amount" default="$"/>
+    <aura:handler name="init" value="{!this}" action="{!c.getHotSalesRegion}"/>
+    <!--
+     <article id="card1" class="forceCard forceLookupCard">
+        <h3 class="card-header square">
+            <span class="header-label">{!v.title}</span>
+        </h3>
+         
+    -->
+    <div class="slds">
+        <h3 class="main-header">
+            <span class="header-label">{!v.title}</span>
+        </h3>
+        <aura:iteration items="{!v.regions}" var="stat">
+            <lighten:LightenList state="{!stat.label}" 
+                           currency="{!v.currencySymbol}" 
+                           amount="{!stat.opportunitiesAmount}"
+                           lead="{!stat.leads}" 
+                           account="{!stat.accounts}" 
+                           opportunity="{!stat.opportunities}"/>
+        </aura:iteration>
+    </div>
+</aura:component>

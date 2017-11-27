@@ -1,0 +1,6 @@
+<design:component label="Sales Regions">
+    <design:attribute name="countrynames" label="Enter a Country Name" description="Specify the country of which states Account, Lead and Opportunities need to be available" />
+    <design:attribute name="statenames" label="Enter State Name to Group by City" description="Specify the State of which Account, Lead and Opportunities need to be grouped" />
+    <design:attribute name="title" label="Heading Text" description="Preferred heading text to show users" />
+    <design:attribute name="currencySymbol" datasource="$,€,£,¥,kr,AUS,CHF,GBP,USD" label="Currency Symbol" description="Curreny Symbol in Organisation" />
+</design:component>

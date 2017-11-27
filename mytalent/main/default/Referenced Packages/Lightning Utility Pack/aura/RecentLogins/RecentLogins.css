@@ -1,0 +1,32 @@
+.THIS {
+    height:auto;
+    padding: 0px .75rem 0px .75rem;
+    background-color:white;
+}
+
+.THIS .main-header {
+    padding: .7rem .7rem;
+    background-color: #F4F6F9;
+    color: #344C71;
+    border-radius: 4px 4px 0px 0px;
+}
+
+.THIS .tnthmb
+{
+    width:25px;
+}
+
+.THIS .mrg-rt
+{
+    margin-right: 0.65rem;
+}
+
+.THIS .bg-1
+{
+    background-color: #FF7600;
+}
+
+.THIS div:last-child
+{
+    border-radius: 0px 0px 4px 4px;
+}

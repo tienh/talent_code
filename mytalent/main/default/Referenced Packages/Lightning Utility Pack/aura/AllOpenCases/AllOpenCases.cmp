@@ -1,0 +1,7 @@
+<aura:component access="global" controller="lighten.AuraDashboardController" implements="forceCommunity:availableForAllPageTypes,force:appHostable,flexipage:availableForAllPageTypes">
+	<aura:attribute access="global" name="title" type="String" default="Total Open Cases"/>
+    <aura:handler name="init" value="{!this}" action="{!c.updateAllOpenCases}"/>
+    <aura:attribute access="global" name="allOpenCount" type="Integer" default="00"/>
+    
+    <lighten:CountView count="{!v.allOpenCount}" title="{!v.title}" bordercolor="warning"/>
+</aura:component>

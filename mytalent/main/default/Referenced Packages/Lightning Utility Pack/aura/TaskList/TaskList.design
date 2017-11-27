@@ -1,0 +1,4 @@
+<design:component >
+	 <design:attribute name="totalResults" datasource="5,10,20,50,100" label="Number of Most Recent Tasks" description="Adjust the count of Tasks to show in components"/>
+     <design:attribute name="ShowAllUsers" datasource="My Tasks,All Tasks" label="Show" description="Set My Taks to show only current logged in user's tasks."/>
+</design:component>
