@@ -1,0 +1,40 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global">
+    <aura:attribute name="levels" type="Object[]" />
+    <aura:attribute name="skills" type="Object[]" />
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />
+
+    <table class="slds-table slds-table--bordered">
+        <thead>
+            <tr>
+                <td class="skill-name"></td>
+                <aura:iteration items="{! v.levels }" var="level">
+                    <td>
+                        <h2 class="slds-text-align_center">
+                            <lightning:icon iconName="{! level.icon }" size="small"/>
+                            &nbsp; {! level.name }
+                        </h2>
+                    </td>
+                </aura:iteration>
+            </tr>
+        </thead>
+        <tbody>
+            <aura:iteration items="{! v.skills }" var="skill" indexVar="index">
+                <tr>
+                    <td data-index="{! index }" onclick="{! c.toggle }" colspan="{! skill.expanded ? 1 : skill.children.length + 1 }">
+                        {! skill.name }
+                        <lightning:icon iconName="{! skill.expanded ? 'utility:chevrondown' : 'utility:chevronright' }" size="x-small"/>
+                    </td>
+                    <aura:if isTrue="{! skill.expanded }">
+                        <aura:iteration items="{! skill.children }" var="child">
+                            <td>
+                                <c:tmOverlayAddComment />
+                                <c:tmSkillCommentBlock />
+                                <button class="slds-button">Read more</button>
+                            </td>
+                        </aura:iteration>
+                </aura:if>
+                </tr>
+            </aura:iteration>
+        </tbody>
+    </table>
+</aura:component>

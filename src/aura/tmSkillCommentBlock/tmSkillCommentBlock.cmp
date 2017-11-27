@@ -1,0 +1,13 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global">
+	<aura:attribute name="comments" type="Object[]" />
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />
+
+    <aura:iteration items="{! v.comments }" var="comment">
+   		<div class="slds-m-top_medium slds-m-bottom_medium slds-cell-wrap">
+            <a href="javascript：void(0)">#{! comment.project }</a>
+            <span>{! comment.team }</span>
+            <p>{! comment.comment }</p>
+            <p>(<span>{! comment.date }</span>&nbsp;<span>{! comment.author }</span>)</p>
+    	</div>
+	</aura:iteration>
+</aura:component>

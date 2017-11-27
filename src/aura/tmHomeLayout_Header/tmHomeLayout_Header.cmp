@@ -1,0 +1,22 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global">
+    <div class="slds-page-header">
+      <div class="slds-grid slds-align_absolute-center">
+        <div class="slds-col slds-size--1-of-4 slds-medium-size--1-of-6">
+            <div class="slds-float_left">
+                <c:tmHomeLayout_Navigation />
+            </div>
+            <div class="slds-float_left logo-container slds-medium-show" onclick="{!c.navigateToHome}"></div>
+        </div>
+        <div class="slds-col slds-size--2-of-4 slds-medium-size--4-of-6">
+            <span class="slds-text-align_center">
+        		<h1 class="slds-page-header__title" title="HEADER">HEADER</h1>
+            </span>
+        </div>
+        <div class="slds-col slds-size--1-of-4 slds-medium-size--1-of-6">
+        	<div class="slds-text-align_right">
+                <lightning:button variant="brand" label="Login" iconName="utility:user" iconPosition="left" onclick="{! c.login }" />
+            </div>
+        </div>
+      </div>
+    </div>
+</aura:component>
