@@ -1,0 +1,90 @@
+<aura:component controller="EmployeeController"
+                implements="flexipage:availableForRecordHome,forceCommunity:availableForAllPageTypes,force:hasRecordId" access="global" >
+    
+    <aura:attribute name="recordId" type="String"/>
+    <aura:attribute name="employee" type="Object" />
+    <aura:attribute name="emp" type="Object" />
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />
+    
+	<article class="slds-card">
+        <div class="slds-card__header slds-grid">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-media__figure">
+                    <span class="slds-icon_container slds-icon-standard-contact" title="description of icon when needed">
+                        <lightning:icon iconName="action:new_contact" size="small"/>
+                    </span>
+                </div>
+                <div class="slds-media__body">
+                    <h2>
+                        <a href="javascript:void(0);" class="slds-card__header-link slds-truncate">
+                            <span class="slds-text-heading_small">Basic info</span>
+                        </a>&nbsp;
+                        <!--<ui:outputText class="form-control" aura:id="recid" value="{!v.recordId}" />-->
+                    </h2>
+                </div>
+            </header>
+            <div class="slds-no-flex">
+                <button class="slds-button slds-button_neutral">Edit</button>
+            </div>
+        </div>
+        <div class="slds-card__body slds-card__body_inner">
+            <table class="slds-table slds-max-medium-table_stacked-horizontal">
+                <tbody>
+                    <tr class="slds-hint-parent">
+                        <th scope="row" class="personal-img slds-text-align_center">
+                            <div class="slds-m-top_medium slds-m-bottom_medium slds-cell-wrap">
+                                <span>
+                                    <img src="{! v.employee.Picture__c }" alt="Picture" border="0" />
+                                </span>
+                                <!--<lightning:icon iconName="action:user" size="large"/>-->
+                            </div>
+                        </th>
+                        <td class="slds-text-align_center">
+                            <div class="slds-m-top_medium slds-m-bottom_medium slds-cell-wrap">
+                                <p>{! v.employee.Last_Name__c } &nbsp; {! v.employee.First_Name__c }</p>
+                                <p>{! v.employee.Name }</p>
+                            </div>
+                        </td>
+                        <td class="slds-text-align_center">
+                            <div class="slds-m-top_medium slds-m-bottom_medium slds-cell-wrap">
+                                <p><span class="slds-badge">{! v.employee.Employee_Hiring__r.Status__c }</span></p>
+                                <p><span class="slds-badge color-background-button-success">{! v.employee.Employee_Hiring__r.Job_Category__c }</span></p>
+                                <p><span class="slds-badge slds-badge_inverse">{! v.employee.Employee_Hiring__r.Position__c }</span></p>
+                            </div>
+                        </td>
+                        <td class="slds-text-align_center">
+                            <div class="slds-m-top_medium slds-m-bottom_medium slds-cell-wrap">
+                                <p>社内ランク</p>
+                                <p>
+                                    <!--<lightning:icon iconName="standard:feed" size="large"/>-->
+                                    <span>
+                                        <img src="{! '/tm/sfc/servlet.shepherd/version/download/' + 
+                                                  v.employee.Employee_Hiring__r.Rank_Ref_CM__c }" width="60" alt="Rank" border="0" />
+                                    </span>
+                                </p>
+                            </div>
+                        </td>
+                        <td class="slds-text-align_center">
+                            <div class="slds-m-top_medium slds-m-bottom_medium slds-cell-wrap">
+                                <p>最近の成果</p>
+                                <p>
+                                    <!--<lightning:icon iconName="standard:thanks" size="large"/>-->
+                                    <span>
+                                        <img src="{! '/tm/sfc/servlet.shepherd/version/download/' + 
+                                                  v.employee.Employee_Hiring__r.Rating_Ref_CM__c }" width="142" alt="Rank" border="0" />
+                                    </span>
+                                </p>
+                            </div>
+                        </td>
+                        <td class="slds-text-align_center">
+                            <div class="slds-m-top_medium slds-m-bottom_medium slds-cell-wrap">
+                                <p>FFS</p>
+                                <p><span class="slds-badge">{! v.employee.Employee_Hiring__r.ffs__c }</span></p>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </article>
+</aura:component>

@@ -1,0 +1,4 @@
+<design:component label="tm Employee Title List">
+    <design:attribute name="pageSize" label="Employees per page" default="8" 
+                      description="Number of employees per page" />
+</design:component>

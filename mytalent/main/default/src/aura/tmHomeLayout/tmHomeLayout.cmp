@@ -1,0 +1,25 @@
+<aura:component implements="forceCommunity:themeLayout">
+    <div class="slds-scope">
+        <!-- HEADER -->
+        <c:tmHomeLayout_Header />
+        <!-- / HEADER -->
+        
+        <!-- PRIMARY CONTENT WRAPPER -->
+        <div>
+            <div class="slds-grid slds-wrap">
+        		<div class="slds-col">
+                    {!v.body}
+                </div>
+            </div>
+        </div>
+        <!-- / PRIMARY CONTENT WRAPPER -->
+        
+        <!-- FOOTER -->
+        <c:tmHomeLayout_Footer />
+        <!-- / FOOTER -->
+    </div>
+    <!-- / REQUIRED SLDS WRAPPER -->
+    
+    <!-- JAVASCRIPT -->
+    <!-- / JAVASCRIPT -->
+</aura:component>

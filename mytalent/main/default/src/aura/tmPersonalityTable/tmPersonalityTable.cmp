@@ -1,0 +1,35 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global">
+    <aura:attribute name="types" type="Object[]" />
+    <aura:attribute name="personalities" type="Object[]" />
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />
+
+    <table class="slds-table slds-table--bordered">
+        <thead>
+            <tr>
+                <td class="personality-name"></td>
+                <aura:iteration items="{! v.types }" var="type">
+                    <td>
+                        <h2 class="slds-text-align_center">
+                            <lightning:icon iconName="{! type.icon }" size="small"/>
+                            &nbsp; {! type.name }
+                        </h2>
+                    </td>
+                </aura:iteration>
+            </tr>
+        </thead>
+        <tbody>
+            <aura:iteration items="{! v.personalities }" var="personality">
+                <tr>
+                    <td class="personality-name" onclick="{! c.toggle }">{! personality.name }</td>
+                    <aura:iteration items="{! personality.children }" var="child">
+                        <td>
+                            <c:tmOverlayAddComment />
+                            <c:tmSkillCommentBlock />
+                            <button class="slds-button">Read more</button>
+                        </td>
+                    </aura:iteration>
+                </tr>
+            </aura:iteration>
+        </tbody>
+    </table>
+</aura:component>

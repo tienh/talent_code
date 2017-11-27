@@ -1,0 +1,9 @@
+<aura:component >
+    <footer class="slds-docked-form-footer">
+      <div class="slds-grid">
+        <div class="slds-col">
+            <h4>&copy; PIVOT.Inc</h4>
+        </div>
+      </div>
+    </footer>
+</aura:component>

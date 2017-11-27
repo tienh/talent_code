@@ -1,0 +1,182 @@
+<aura:component implements="flexipage:availableForRecordHome,forceCommunity:availableForAllPageTypes,force:hasRecordId" access="global" >
+    
+    <aura:attribute name="recordId" type="String"/>
+    <aura:attribute name="employee" type="Object" />
+    
+    <aura:attribute name="fromDate" type="String" />
+    <aura:attribute name="toDate" type="String" />
+    
+    <!-- SEARCH -->
+    <div class="slds-grid slds-p-horizontal_small slds-m-bottom--large slds-wrap">
+        <div class="slds-col slds-size--1-of-1 slds-medium-size--1-of-12 slds-large-size--1-of-12">評価期間</div>
+        <div class="slds-col slds-size--1-of-1 slds-medium-size--4-of-8 slds-large-size--4-of-12">
+            <div class="slds-grid">
+                <div class="slds-col">
+                    <ui:inputDate aura:id="from" class="slds-input" displayDatePicker="true" value="{!v.fromDate}" />
+                </div>
+                <div class="slds-col slds-text-align_center">〜</div>
+                <div class="slds-col">
+                    <ui:inputDate aura:id="to" class="slds-input" displayDatePicker="true" value="{!v.toDate}" />
+                </div>
+            </div>
+        </div>
+        <div class="slds-col slds-size--1-of-1 slds-medium-size--1-of-12 slds-large-size--1-of-12 slds-text-align_center">
+            <button type="button" onclick="{!c.search}" class="slds-button slds-button--brand">Search</button>
+        </div>
+    </div>
+    <!-- / SEARCH -->
+    
+    <!-- LINE 1 -->
+    <div class="slds-grid slds-p-horizontal_small slds-m-bottom--xx-small slds-wrap">
+        <div class="slds-col slds-size--1-of-2 slds-medium-size--1-of-4 slds-large-size--1-of-8">
+            <button class="slds-button slds-button_stateful slds-not-selected button_blue" aria-live="assertive">
+                <span class="slds-text-not-selected">
+                    <lightning:icon class="button_icon_left" iconName="standard:opportunity" size="small"/>
+                    プレゼンテーション
+                </span>
+            </button>
+        </div>
+        <div class="slds-col slds-size--1-of-2 slds-medium-size--1-of-6 slds-large-size--1-of-10">
+            <button class="slds-button slds-button_stateful slds-not-selected button_blue" aria-live="assertive">
+                <span class="slds-text-not-selected">
+                    仕様設計
+                </span>
+            </button>
+        </div>
+        <div class="slds-col slds-size--1-of-3 slds-medium-size--1-of-4 slds-large-size--1-of-8">
+            <button class="slds-button slds-button_stateful slds-not-selected button_pink" aria-live="assertive">
+                <span class="slds-text-not-selected">
+                    <lightning:icon class="button_icon_left" iconName="standard:goals" size="small"/>
+                    マーケティング
+                </span>
+            </button>
+        </div>
+        <div class="slds-col slds-size--1-of-3 slds-medium-size--1-of-6 slds-large-size--1-of-8">
+            <button class="slds-button slds-button_stateful slds-not-selected button_green" aria-live="assertive">
+                <span class="slds-text-not-selected">
+                    <lightning:icon class="button_icon_left" iconName="standard:skill_requirement" size="small"/>
+                    情報設計
+                </span>
+            </button>
+        </div>
+        <div class="slds-col slds-size--1-of-3 slds-medium-size--1-of-6 slds-large-size--1-of-8 div_inline">
+                <img class="img_inline" src="{! '/tm/sfc/servlet.shepherd/version/download/' + '0687F000000lRKB'}" 
+                     width="40" alt="Heart" border="0" />
+            <div class="text_inline">12</div>
+        </div>
+    </div>
+    <!-- / LINE 1 -->
+    <!-- LINE 2 -->
+    <div class="slds-grid slds-p-horizontal_small slds-m-bottom--large slds-wrap">
+        <div class="slds-col slds-size--1-of-2 slds-medium-size--1-of-4 slds-large-size--1-of-8">
+            <button class="slds-button slds-button_stateful slds-not-selected button_blue" aria-live="assertive">
+                <span class="slds-text-not-selected">
+                    <lightning:icon class="button_icon_left" iconName="standard:opportunity" size="small"/>
+                    情報設計
+                </span>
+            </button>
+        </div>
+        <div class="slds-col slds-size--1-of-2 slds-medium-size--1-of-4 slds-large-size--1-of-8">
+            <button class="slds-button slds-button_stateful slds-not-selected button_blue" aria-live="assertive">
+                <span class="slds-text-not-selected">
+                    PJ管理
+                </span>
+            </button>
+        </div>
+    </div>
+    <!-- / LINE 2 -->
+    <!-- LINE 3 -->
+    <div class="slds-grid slds-p-horizontal_small slds-m-bottom--xx-small slds-wrap">
+        <div class="slds-col slds-size--1-of-1 slds-medium-size--1-of-1 slds-large-size--1-of-1">
+            <span>所属チームリスト</span>
+        </div>
+    </div>
+    <!-- / LINE 3 -->
+    <!-- LINE 4 -->
+    <div class="slds-grid slds-p-horizontal_small slds-m-bottom--xx-small slds-wrap">
+        <div class="slds-col slds-size--1-of-1 slds-medium-size--1-of-4 slds-large-size--1-of-8">
+            <span>PNX開発チーム</span>
+        </div>
+        <div class="slds-col slds-size--1-of-3 slds-medium-size--1-of-4 slds-large-size--1-of-8">
+            <button class="slds-button slds-button_stateful slds-not-selected button_blue" aria-live="assertive">
+                <span class="slds-text-not-selected">
+                    <lightning:icon class="button_icon_left" iconName="standard:opportunity" size="small"/>
+                    プレゼンテーション
+                </span>
+            </button>
+        </div>
+        <div class="slds-col slds-size--1-of-3 slds-medium-size--1-of-4 slds-large-size--1-of-8">
+            <button class="slds-button slds-button_stateful slds-not-selected button_blue" aria-live="assertive">
+                <span class="slds-text-not-selected">
+                    仕様設計
+                </span>
+            </button>
+        </div>
+        <div class="slds-col slds-size--1-of-3 slds-medium-size--1-of-4 slds-large-size--1-of-10">
+            <button class="slds-button slds-button_stateful slds-not-selected button_pink" aria-live="assertive">
+                <span class="slds-text-not-selected">
+                    <lightning:icon class="button_icon_left" iconName="standard:goals" size="small"/>
+                    マーケティング
+                </span>
+            </button>
+        </div>
+    </div>
+    <!-- / LINE 4 -->
+    <!-- LINE 5 -->
+    <div class="slds-grid slds-p-horizontal_small slds-m-bottom--xx-small slds-wrap">
+        <div class="slds-col slds-size--1-of-1 slds-medium-size--1-of-4 slds-large-size--1-of-8">
+            <span>赤ペン開発チーム</span>
+        </div>
+        <div class="slds-col slds-size--1-of-3 slds-medium-size--1-of-4 slds-large-size--1-of-8">
+            <button class="slds-button slds-button_stateful slds-not-selected button_blue" aria-live="assertive">
+                <span class="slds-text-not-selected">
+                    <lightning:icon class="button_icon_left" iconName="standard:opportunity" size="small"/>
+                    プレゼンテーション
+                </span>
+            </button>
+        </div>
+        <div class="slds-col slds-size--1-of-3 slds-medium-size--1-of-4 slds-large-size--1-of-8">
+            <button class="slds-button slds-button_stateful slds-not-selected button_blue" aria-live="assertive">
+                <span class="slds-text-not-selected">
+                    仕様設計
+                </span>
+            </button>
+        </div>
+    </div>
+    <!-- / LINE 5 -->
+    <!-- LINE 6 -->
+    <div class="slds-grid slds-p-horizontal_small slds-m-bottom--large slds-wrap">
+        <div class="slds-col slds-size--1-of-1 slds-medium-size--1-of-4 slds-large-size--1-of-8">
+            <span>365移行チーム</span>
+        </div>
+        <div class="slds-col slds-size--1-of-2 slds-medium-size--1-of-6 slds-large-size--1-of-8">
+            <button class="slds-button slds-button_stateful slds-not-selected button_blue" aria-live="assertive">
+                <span class="slds-text-not-selected">
+                    仕様設計
+                </span>
+            </button>
+        </div>
+        <div class="slds-col slds-size--1-of-2 slds-medium-size--1-of-4 slds-large-size--1-of-8">
+            <button class="slds-button slds-button_stateful slds-not-selected button_blue" aria-live="assertive">
+                <span class="slds-text-not-selected">
+                    PJ管理
+                </span>
+            </button>
+        </div>
+        <div class="slds-col slds-size--1-of-2 slds-medium-size--1-of-6 slds-large-size--1-of-8">
+            <button class="slds-button slds-button_stateful slds-not-selected button_green" aria-live="assertive">
+                <span class="slds-text-not-selected">
+                    <lightning:icon class="button_icon_left" iconName="standard:skill_requirement" size="small"/>
+                    情報設計
+                </span>
+            </button>
+        </div>
+        <div class="slds-col slds-size--1-of-2 slds-medium-size--1-of-6 slds-large-size--1-of-8 div_inline">
+                <img class="img_inline" src="{! '/tm/sfc/servlet.shepherd/version/download/' + '0687F000000lRKB'}" 
+                     width="40" alt="Heart" border="0" />
+            <div class="text_inline">1</div>
+        </div>
+    </div>
+    <!-- / LINE 6 -->
+	
+</aura:component>

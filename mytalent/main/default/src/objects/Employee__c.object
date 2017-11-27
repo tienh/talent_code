@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Birthday_Disp__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( 
+ISBLANK(Brithday__c), 
+&quot;&quot;, 
+TEXT(YEAR(Brithday__c))+ &quot;/&quot; +TEXT(MONTH(Brithday__c))+ &quot;/&quot; +TEXT(DAY(Brithday__c)) 
++ &quot;（&quot; + TEXT(FLOOR((TODAY() - Brithday__c)/365.2425)) + &quot;歳）&quot; 
+)</formula>
+        <label>FML Birthday</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Brithday__c</fullName>
+        <externalId>false</externalId>
+        <label>Brithday</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Employee_Hiring__c</fullName>
+        <externalId>false</externalId>
+        <label>Employee Hiring</label>
+        <referenceTo>Employee_Hiring__c</referenceTo>
+        <relationshipLabel>Employee</relationshipLabel>
+        <relationshipName>Employee</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>First_Name_Kana__c</fullName>
+        <externalId>false</externalId>
+        <label>First Name Kana</label>
+        <length>40</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>First_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>First Name</label>
+        <length>40</length>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Gender_Disp__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASE(
+  Gender__c , 
+  &quot;Male&quot;, &quot;男性&quot;, 
+  &quot;Female&quot;, &quot;女性&quot;, 
+  &quot;&quot; 
+)</formula>
+        <label>FML Gender</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Gender__c</fullName>
+        <externalId>false</externalId>
+        <label>Gender</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Male</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Female</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Image__c</fullName>
+        <externalId>false</externalId>
+        <label>Image</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Job_Title__c</fullName>
+        <externalId>false</externalId>
+        <label>Job Title</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Job__c</fullName>
+        <externalId>false</externalId>
+        <label>Job</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Last_Name_Kana__c</fullName>
+        <externalId>false</externalId>
+        <label>Last Name Kana</label>
+        <length>60</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Last_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Last Name</label>
+        <length>60</length>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Picture_IMG__c</fullName>
+        <externalId>false</externalId>
+        <formula>if(ISBLANK(Picture__c), &apos;&apos;, IMAGE(Picture__c, &quot;Picture&quot;))</formula>
+        <label>FML Picture</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Picture__c</fullName>
+        <externalId>false</externalId>
+        <label>Picture</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>Rank_IMG__c</fullName>
+        <externalId>false</externalId>
+        <formula>IMAGE( 
+CASE(Rank__c , 
+&quot;S&quot;, &quot;/servlet/servlet.FileDownload?file=0157F000000lbTk&quot;, 
+&quot;A&quot;, &quot;/servlet/servlet.FileDownload?file=0157F000000lbTu&quot;, 
+&quot;B&quot;, &quot;/servlet/servlet.FileDownload?file=0157F000000lbTz&quot;, 
+&quot;C&quot;, &quot;/servlet/servlet.FileDownload?file=0157F000000lbU4&quot;, 
+&quot;D&quot;, &quot;/servlet/servlet.FileDownload?file=0157F000000lbUE&quot;, 
+&quot;E&quot;, &quot;/servlet/servlet.FileDownload?file=0157F000000lbUJ&quot;, 
+&quot;F&quot;, &quot;/servlet/servlet.FileDownload?file=0157F000000lbUO&quot;, 
+&quot;/img/samples/stars_000.gif&quot;), 
+&quot;rank&quot;, 70, 70)</formula>
+        <label>FML Rank</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Rank_Ref__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASE(Rank__c , 
+&quot;S&quot;, &quot;0157F000000lbTk&quot;, 
+&quot;A&quot;, &quot;0157F000000lbTu&quot;, 
+&quot;B&quot;, &quot;0157F000000lbTz&quot;, 
+&quot;C&quot;, &quot;0157F000000lbU4&quot;, 
+&quot;D&quot;, &quot;0157F000000lbUE&quot;, 
+&quot;E&quot;, &quot;0157F000000lbUJ&quot;, 
+&quot;F&quot;, &quot;0157F000000lbUO&quot;,
+&quot;&quot;
+)</formula>
+        <label>FML Rank Ref</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Rank__c</fullName>
+        <externalId>false</externalId>
+        <label>Rank</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>S</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>A</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>B</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>C</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>D</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>E</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>F</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Rating_Disp__c</fullName>
+        <externalId>false</externalId>
+        <formula>IMAGE( 
+  CASE(Rating__c, 
+    5, &quot;/img/samples/stars_500.gif&quot;, 
+    4, &quot;/img/samples/stars_400.gif&quot;, 
+    3, &quot;/img/samples/stars_300.gif&quot;, 
+    2, &quot;/img/samples/stars_200.gif&quot;,
+    1, &quot;/img/samples/stars_100.gif&quot;,
+    &quot;/img/samples/stars_000.gif&quot;
+  ), &quot;Unknown&quot;
+)</formula>
+        <label>FML Rating</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Rating__c</fullName>
+        <externalId>false</externalId>
+        <label>Rating</label>
+        <precision>1</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Recent_Achievement__c</fullName>
+        <externalId>false</externalId>
+        <label>Recent Achievement</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Thumbnail_IMG__c</fullName>
+        <externalId>false</externalId>
+        <formula>if(ISBLANK(Thumbnail__c), &quot;&quot;, IMAGE(Thumbnail__c, &quot;Picture&quot;, 200, -1))</formula>
+        <label>FML Thumbnail</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Thumbnail__c</fullName>
+        <externalId>false</externalId>
+        <label>Thumbnail</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>User__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>User</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Employee</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <label>Employee</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>Thumbnail_IMG__c</columns>
+        <columns>NAME</columns>
+        <columns>Job__c</columns>
+        <columns>Job_Title__c</columns>
+        <columns>Rank__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <label>Display Name</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>

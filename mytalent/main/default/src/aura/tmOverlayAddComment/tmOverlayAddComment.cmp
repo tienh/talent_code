@@ -1,0 +1,36 @@
+<aura:component >
+	<div class="slds-form-element">
+        <button class="slds-button slds-button--neutral" onclick="{! c.showToggle }">
+            <span class="slds-text-not-selected">
+                <lightning:icon iconName="utility:add" class="slds-button__icon slds-button__icon--left" size="xx-small"/>
+                <span>Add</span>
+            </span>
+        </button>
+    </div>
+    <div class="slds-popover slds-nubbin--left-top toggle" role="tooltip" style="position:absolute; top:0px; left:100px;" aura:id="tooltip">
+ 		<div class="slds-popover__body">
+        	<div class="slds-grid">
+                <div class="slds-col slds-size_7-of-8">
+                    <div class="slds-form-element">
+                       <div class="slds-form-element__control">
+                        <input class="slds-input" type="text" placeholder="タグ" />
+                      </div>
+                      <div class="slds-form-element__control">
+                        <textarea class="slds-textarea" placeholder="コメント"></textarea>
+                      </div>
+                      <div class="slds-form-element">
+                        <button class="slds-button slds-button--brand" size="x-small" type="button">保存</button>
+                        <button class="slds-button slds-button--neutral" type="button" size="x-small">キャンセル</button>
+                      </div>
+                    </div>
+                </div>
+                <div class="slds-col slds-size_1-of-8">
+                    <button class="slds-button slds-button_icon slds-button_icon-small slds-float_right slds-popover__close slds-button_icon" title="Close dialog" onclick="{! c.hideToggle }">
+                        <lightning:icon iconName="utility:close" class="slds-button__icon slds-button__icon--left" size="xx-small"/>
+                        <span class="slds-assistive-text">Close dialog</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>  
+</aura:component>
