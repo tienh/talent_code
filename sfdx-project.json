@@ -1,7 +1,10 @@
 {
   "packageDirectories": [
     {
-      "path": "mytalent",
+      "path": "force-app"
+    },
+    {
+      "path": "talent-app",
       "default": true
     }
   ],

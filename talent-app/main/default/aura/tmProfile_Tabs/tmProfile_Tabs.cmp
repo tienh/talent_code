@@ -1,0 +1,67 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global">
+	<div class="slds-tabs_default">
+		<!-- MAIN TAB -->
+        <ul class="slds-tabs_default__nav" role="tablist">
+            <li aura:id="tabpage" class="slds-tabs_default__item slds-is-active" title="Item One" role="presentation" onclick="{!c.changeTab}">
+                <a class="slds-tabs_default__link" href="javascript:void(0);" role="tab" tabindex="0" aria-selected="true" aria-controls="tab-default-1" id="tab-default-1__item">
+                    &nbsp;&nbsp;&nbsp;&nbsp;RSS&nbsp;&nbsp;&nbsp;&nbsp;
+                </a>
+            </li>
+            <li aura:id="tabpage" class="slds-tabs_default__item" title="Item Two" role="presentation" onclick="{!c.changeTab}">
+                <a class="slds-tabs_default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-2" id="tab-default-2__item">
+                    Timeline
+                </a>
+            </li>
+            <li aura:id="tabpage" class="slds-tabs_default__item" title="Item Three" role="presentation" onclick="{!c.changeTab}">
+                <a class="slds-tabs_default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-3" id="tab-default-3__item">
+                    Profile
+                </a>
+            </li>
+        </ul>
+        <!-- / MAIN TAB -->
+        <div aura:id="tab-default-1" class="slds-tabs_default__content slds-show" role="tabpanel" aria-labelledby="tab-default-1__item">
+            <!-- RSS CONTENT -->
+            RSS content here!
+            <!-- / RSS CONTENT -->
+        </div>
+        <div aura:id="tab-default-2" class="slds-tabs_default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-2__item">
+            <!-- TIMELINE CONTENT -->
+        	<div class="slds-tabs_scoped">
+                <!-- SUB TAB -->
+                <ul class="slds-tabs_scoped__nav" role="tablist">
+                    <li aura:id="tabsub" class="slds-tabs_scoped__item slds-is-active" title="Item One" role="presentation" onclick="{!c.changeTab}">
+                        <a class="slds-tabs_scoped__link" href="javascript:void(0);" role="tab" tabindex="0" aria-selected="true" aria-controls="tab-scoped-1" id="tab-scoped-1__item">
+                            Skill
+                        </a>
+                    </li>
+                    <li aura:id="tabsub" class="slds-tabs_scoped__item" title="Item Two" role="presentation" onclick="{!c.changeTab}">
+                        <a class="slds-tabs_scoped__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-scoped-2" id="tab-scoped-2__item">
+                            Pesonality
+                        </a>
+                    </li>
+                    <li aura:id="tabsub" class="slds-tabs_scoped__item" title="Item Three" role="presentation" onclick="{!c.changeTab}">
+                        <a class="slds-tabs_scoped__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-scoped-3" id="tab-scoped-3__item">
+                            Evaluation
+                        </a>
+                    </li>
+                </ul>
+                <!-- / SUB TAB -->
+                <div aura:id="tab-scoped-1" class="slds-tabs_scoped__content slds-show" role="tabpanel" aria-labelledby="tab-scoped-1__item">
+                	<c:tmCollapsibleTable />
+                </div>
+                <div aura:id="tab-scoped-2" class="slds-tabs_scoped__content slds-hide" role="tabpanel" aria-labelledby="tab-scoped-2__item">
+                    <c:tmPersonalityTable />
+                </div>
+                <div aura:id="tab-scoped-3" class="slds-tabs_scoped__content slds-hide" role="tabpanel" aria-labelledby="tab-scoped-3__item">
+					<c:tmEvaluationTable />
+				</div>
+            </div>
+            <!-- / TIMELINE CONTENT -->
+        </div>
+        <div aura:id="tab-default-3" class="slds-tabs_default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-3__item">
+            <!-- PROFILE CONTENT -->
+            <c:tmEmployee_Detail />
+            <!-- / PROFILE CONTENT -->
+        </div>
+    </div>
+</aura:component>

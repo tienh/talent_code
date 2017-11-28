@@ -1,3 +1,0 @@
-<design:component label="Total Closed Cases">
-        <design:attribute name="title" label="Heading Text" description="Text to show in heading" />
-</design:component>
