@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Hire_Date_Disp__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(
+  ISBLANK(Hire_Date__c),
+  "",
+  TEXT(YEAR(Hire_Date__c))+ "/" +TEXT(MONTH(Hire_Date__c))+ "/" +TEXT(DAY(Hire_Date__c))
+  + "（勤続" + TEXT(FLOOR((TODAY() - Hire_Date__c)/365.2425)) + "年）"
+)</formula>
+    <label>FML Hire Date</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

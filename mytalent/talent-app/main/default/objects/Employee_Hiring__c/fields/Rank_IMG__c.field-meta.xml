@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Rank_IMG__c</fullName>
+    <externalId>false</externalId>
+    <formula>IMAGE( 
+CASE(Rank__c , 
+"S", "/servlet/servlet.FileDownload?file=0157F000000lbTk", 
+"A", "/servlet/servlet.FileDownload?file=0157F000000lbTu", 
+"B", "/servlet/servlet.FileDownload?file=0157F000000lbTz", 
+"C", "/servlet/servlet.FileDownload?file=0157F000000lbU4", 
+"D", "/servlet/servlet.FileDownload?file=0157F000000lbUE", 
+"E", "/servlet/servlet.FileDownload?file=0157F000000lbUJ", 
+"F", "/servlet/servlet.FileDownload?file=0157F000000lbUO", 
+"/img/samples/stars_000.gif"), 
+"rank", 70, 70)</formula>
+    <label>FML Rank</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

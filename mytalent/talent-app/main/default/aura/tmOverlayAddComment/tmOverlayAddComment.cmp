@@ -1,0 +1,23 @@
+<aura:component controller="TMSaveComment" >
+    <aura:attribute name="menuListVisible" type="Boolean" default="false" description="MenuListを表示するかどうか"/>
+    <aura:attribute name="autoCompleteList" type="String[]" default="value1, value2, value3" description="MenuListで表示する値"/>
+    <aura:attribute name="tag" type="String" />
+    <aura:attribute name="comment" type="String" />
+    
+    <c:strike_popover variant="panels" placement="auto right" theme="default" withClose="true">
+        <aura:set attribute="header">
+           <div class="slds-media slds-m-bottom--small slds-media--center">
+               <div class="slds-media__body">
+                   	<c:strike_multiLookup aura:id="tag" object="Comment_Tag__c" searchField="Name" placeholder="タグ" order="Name" limit="5" loadingMessage="検索中" />
+              		<lightning:textArea aura:id="comment" placeholder="コメント" variant="standard" value="{!v.comment}" />
+              	</div>
+           	</div>
+            <div class="slds-grid slds-wrap slds-grid--pull-padded">
+                <lightning:button label="保存" variant="brand" onclick="{!c.save}" />
+                <lightning:button label="キャンセル" variant="neutral" onclick="{!c.emptyText}" />
+            </div>
+        </aura:set>
+        <lightning:button label="Add" variant="neutral" iconName="utility:add" iconPosition="left" />
+    </c:strike_popover>
+ 
+</aura:component>

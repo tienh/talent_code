@@ -1,0 +1,14 @@
+{
+  "packageDirectories": [
+    {
+      "path": "force-app"
+    },
+    {
+      "path": "talent-app",
+      "default": true
+    }
+  ],
+  "namespace": "",
+  "sfdcLoginUrl": "https://login.salesforce.com",
+  "sourceApiVersion": "41.0"
+}
