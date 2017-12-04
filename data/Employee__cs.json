@@ -1,0 +1,171 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "Employee__c",
+                "referenceId": "Employee__cRef1"
+            },
+            "Name": "グィンフエン",
+            "First_Name__c": "Huyen",
+            "Last_Name__c": "Nguyen",
+            "First_Name_Kana__c": "フエン",
+            "Last_Name_Kana__c": "グィン",
+            "Brithday__c": "1986-04-20",
+            "Gender__c": "Female",
+            "Image__c": "<p><img src=\"https://pnx-tm-dev-ed--c.ap5.content.force.com/servlet/rtaImage?eid=a017F00000B5BJM&amp;feoid=00N7F00000AlNrl&amp;refid=0EM7F000000kNyG\" alt=\"images_emp_03.jpeg\"></img></p>",
+            "Picture__c": "https://i.imgur.com/JoDBr6z.jpg",
+            "Thumbnail__c": "https://i.imgur.com/JoDBr6z.jpg",
+            "Job__c": "ADV-H",
+            "Job_Title__c": "EMP",
+            "Rank__c": "C",
+            "Rating__c": 3,
+            "Employee_Hiring__c": "@Employee_Hiring__cRef1"
+        },
+        {
+            "attributes": {
+                "type": "Employee__c",
+                "referenceId": "Employee__cRef2"
+            },
+            "Name": "ラーンダイ",
+            "First_Name__c": "Dai",
+            "Last_Name__c": "Tran",
+            "First_Name_Kana__c": "ダイ",
+            "Last_Name_Kana__c": "ラーン",
+            "Brithday__c": "1992-04-14",
+            "Gender__c": "Female",
+            "Image__c": "<p><img src=\"https://pnx-tm-dev-ed--c.ap5.content.force.com/servlet/rtaImage?eid=a017F00000B5BPb&amp;feoid=00N7F00000AlNrl&amp;refid=0EM7F000000kNyV\" alt=\"images_emp_01.jpeg\"></img></p>",
+            "Picture__c": "https://i.imgur.com/LFO4NYT.jpg",
+            "Thumbnail__c": "https://i.imgur.com/LFO4NYT.jpg",
+            "Job__c": "ADV-K",
+            "Job_Title__c": "EMP",
+            "Rank__c": "D",
+            "Rating__c": 2,
+            "Employee_Hiring__c": "@Employee_Hiring__cRef2"
+        },
+        {
+            "attributes": {
+                "type": "Employee__c",
+                "referenceId": "Employee__cRef3"
+            },
+            "Name": "グーンキエン",
+            "First_Name__c": "Kien",
+            "Last_Name__c": "キエン",
+            "First_Name_Kana__c": "Nguyen",
+            "Last_Name_Kana__c": "グーン",
+            "Brithday__c": "1985-11-11",
+            "Gender__c": "Male",
+            "Image__c": "<p><img src=\"https://pnx-tm-dev-ed--c.ap5.content.force.com/servlet/rtaImage?eid=a017F00000B5BEG&amp;feoid=00N7F00000AlNrl&amp;refid=0EM7F000000kNxw\" alt=\"images_emp_06.jpeg\"></img></p>",
+            "Picture__c": "https://i.imgur.com/oQmbgRO.jpg",
+            "Thumbnail__c": "https://i.imgur.com/oQmbgRO.jpg",
+            "Job__c": "ADV-A",
+            "Job_Title__c": "Manager",
+            "Rank__c": "A",
+            "Rating__c": 4,
+            "Employee_Hiring__c": "@Employee_Hiring__cRef3"
+        },
+        {
+            "attributes": {
+                "type": "Employee__c",
+                "referenceId": "Employee__cRef4"
+            },
+            "Name": "グェンカーン",
+            "First_Name__c": "Khang",
+            "Last_Name__c": "Nguyen",
+            "First_Name_Kana__c": "カーン",
+            "Last_Name_Kana__c": "グェン",
+            "Brithday__c": "1988-04-19",
+            "Gender__c": "Male",
+            "Image__c": "<p><img src=\"https://pnx-tm-dev-ed--c.ap5.content.force.com/servlet/rtaImage?eid=a017F00000B5BIx&amp;feoid=00N7F00000AlNrl&amp;refid=0EM7F000000kNyB\" alt=\"images_emp_08.jpeg\"></img></p>",
+            "Picture__c": "https://i.imgur.com/XHKbmaT.jpg",
+            "Thumbnail__c": "https://i.imgur.com/XHKbmaT.jpg",
+            "Job__c": "ADV-B",
+            "Job_Title__c": "EMP",
+            "Rank__c": "B",
+            "Rating__c": 3,
+            "Employee_Hiring__c": "@Employee_Hiring__cRef4"
+        },
+        {
+            "attributes": {
+                "type": "Employee__c",
+                "referenceId": "Employee__cRef5"
+            },
+            "Name": "ラーンジュン",
+            "First_Name__c": "Dung",
+            "Last_Name__c": "Tran",
+            "First_Name_Kana__c": "ジュン",
+            "Last_Name_Kana__c": "ラーン",
+            "Brithday__c": "1993-08-13",
+            "Gender__c": "Male",
+            "Image__c": "<p><img src=\"https://pnx-tm-dev-ed--c.ap5.content.force.com/servlet/rtaImage?eid=a017F00000B5BPz&amp;feoid=00N7F00000AlNrl&amp;refid=0EM7F000000kNya\" alt=\"images_emp_05.jpeg\"></img></p>",
+            "Picture__c": "https://i.imgur.com/t19CCMu.jpg",
+            "Thumbnail__c": "https://i.imgur.com/t19CCMu.jpg",
+            "Job__c": "ADV-T",
+            "Job_Title__c": "CLE",
+            "Rank__c": "E",
+            "Rating__c": 1,
+            "Employee_Hiring__c": "@Employee_Hiring__cRef5"
+        },
+        {
+            "attributes": {
+                "type": "Employee__c",
+                "referenceId": "Employee__cRef6"
+            },
+            "Name": "フィンチィエン",
+            "First_Name__c": "Tien",
+            "Last_Name__c": "Huynh",
+            "First_Name_Kana__c": "チィエン",
+            "Last_Name_Kana__c": "フィン",
+            "Brithday__c": "1983-05-18",
+            "Gender__c": "Male",
+            "Image__c": "<p><img src=\"https://pnx-tm-dev-ed--c.ap5.content.force.com/servlet/rtaImage?eid=a017F00000B5BId&amp;feoid=00N7F00000AlNrl&amp;refid=0EM7F000000kNy1\" alt=\"images_emp_07.jpeg\"></img></p>",
+            "Picture__c": "https://i.imgur.com/3nFvLtt.jpg",
+            "Thumbnail__c": "https://i.imgur.com/3nFvLtt.jpg",
+            "Job__c": "ADV-C",
+            "Job_Title__c": "EMP",
+            "Rank__c": "B",
+            "Rating__c": 3,
+            "Employee_Hiring__c": "@Employee_Hiring__cRef6"
+        },
+        {
+            "attributes": {
+                "type": "Employee__c",
+                "referenceId": "Employee__cRef7"
+            },
+            "Name": "レギエム",
+            "First_Name__c": "Diem",
+            "Last_Name__c": "Le",
+            "First_Name_Kana__c": "ギエム",
+            "Last_Name_Kana__c": "レ",
+            "Brithday__c": "1996-06-12",
+            "Gender__c": "Female",
+            "Picture__c": "https://i.imgur.com/XyuoVqw.jpg",
+            "Thumbnail__c": "https://i.imgur.com/XyuoVqw.jpg",
+            "Job__c": "ADV-H",
+            "Job_Title__c": "LEAD",
+            "Rank__c": "C",
+            "Rating__c": 3,
+            "Employee_Hiring__c": "@Employee_Hiring__cRef7"
+        },
+        {
+            "attributes": {
+                "type": "Employee__c",
+                "referenceId": "Employee__cRef8"
+            },
+            "Name": "栗林",
+            "First_Name__c": "裕美子",
+            "Last_Name__c": "中川",
+            "First_Name_Kana__c": "ゆみこ",
+            "Last_Name_Kana__c": "なかがわ",
+            "Brithday__c": "1981-06-19",
+            "Gender__c": "Female",
+            "Image__c": "<p><img src=\"https://pnx-tm-dev-ed--c.ap5.content.force.com/servlet/rtaImage?eid=a017F00000B5BDd&amp;feoid=00N7F00000AlNrl&amp;refid=0EM7F000000kNxr\" alt=\"images_emp_02.jpeg\"></img></p>",
+            "Picture__c": "https://i.imgur.com/To6Jddr.jpg",
+            "Thumbnail__c": "https://i.imgur.com/To6Jddr.jpg",
+            "Job__c": "ADV-B",
+            "Job_Title__c": "Director",
+            "Rank__c": "S",
+            "Rating__c": 5,
+            "Employee_Hiring__c": "@Employee_Hiring__cRef8"
+        }
+    ]
+}
