@@ -1,0 +1,15 @@
+SELECT Id, 
+      Rank__c, Rating__c, 
+      Job_Category__c, Position__c, Status__c, 
+      Department__c, Work_Location__c, 
+      Current_Address__c, ffs__c, 
+      Tel__c, Emergency_Contact__c, 
+      Email__c, Hire_Date__c, 
+      Recent_Achievement__c, 
+      ( SELECT Id, 
+            Name, First_Name__c, Last_Name__c, First_Name_Kana__c, Last_Name_Kana__c, 
+            Brithday__c, Gender__c, 
+            Image__c, Picture__c, Thumbnail__c, 
+            Job__c, Job_Title__c, Rank__c, Rating__c
+      FROM Employee__r ) 
+FROM Employee_Hiring__c

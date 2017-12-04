@@ -1,0 +1,156 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "Employee_Hiring__c",
+                "referenceId": "Employee_Hiring__cRef1"
+            },
+            "Rank__c": "C",
+            "Rating__c": 3,
+            "Job_Category__c": "EMP",
+            "Position__c": "ADV-H",
+            "Status__c": "在職中",
+            "Department__c": "支社",
+            "Work_Location__c": "HCM",
+            "Current_Address__c": "HCM",
+            "ffs__c": "BDE（6666）",
+            "Tel__c": "777-777-7777",
+            "Emergency_Contact__c": "666-666-6666",
+            "Email__c": "huyen@pivot.jp",
+            "Hire_Date__c": "2016-05-03"
+        },
+        {
+            "attributes": {
+                "type": "Employee_Hiring__c",
+                "referenceId": "Employee_Hiring__cRef2"
+            },
+            "Rank__c": "D",
+            "Rating__c": 2,
+            "Job_Category__c": "EMP",
+            "Position__c": "ADV-E",
+            "Status__c": "在職止",
+            "Department__c": "支店",
+            "Work_Location__c": "大阪",
+            "Current_Address__c": "大阪城公園",
+            "ffs__c": "BDE（4444）",
+            "Tel__c": "222-222-2222",
+            "Emergency_Contact__c": "333-333-3333",
+            "Email__c": "daitran@pivot.jp",
+            "Hire_Date__c": "2017-03-28"
+        },
+        {
+            "attributes": {
+                "type": "Employee_Hiring__c",
+                "referenceId": "Employee_Hiring__cRef3"
+            },
+            "Rank__c": "A",
+            "Rating__c": 5,
+            "Job_Category__c": "Manager",
+            "Position__c": "ADV-A",
+            "Status__c": "在職中",
+            "Department__c": "本社",
+            "Work_Location__c": "東京",
+            "Current_Address__c": "PIVOT会社",
+            "ffs__c": "BDE（5555）",
+            "Tel__c": "123-456-7890",
+            "Emergency_Contact__c": "222-222-2222",
+            "Email__c": "kien@pivot.jp",
+            "Hire_Date__c": "2011-11-10"
+        },
+        {
+            "attributes": {
+                "type": "Employee_Hiring__c",
+                "referenceId": "Employee_Hiring__cRef4"
+            },
+            "Rank__c": "B",
+            "Rating__c": 4,
+            "Job_Category__c": "EMP",
+            "Position__c": "ADV-B",
+            "Status__c": "在職中",
+            "Department__c": "Fukuoka",
+            "Work_Location__c": "福岡支部",
+            "Current_Address__c": "福岡県福岡市早良区",
+            "ffs__c": "BDE（9999）",
+            "Tel__c": "999-999-9999",
+            "Emergency_Contact__c": "444-444-4444",
+            "Email__c": "khang@pivot.jp",
+            "Hire_Date__c": "2015-04-15"
+        },
+        {
+            "attributes": {
+                "type": "Employee_Hiring__c",
+                "referenceId": "Employee_Hiring__cRef5"
+            },
+            "Rank__c": "E",
+            "Rating__c": 1,
+            "Job_Category__c": "CLE",
+            "Position__c": "ADV-T",
+            "Status__c": "在職止",
+            "Department__c": "支店",
+            "Work_Location__c": "千葉",
+            "Current_Address__c": "千葉県",
+            "ffs__c": "BDE（2222）",
+            "Tel__c": "333-333-3333",
+            "Emergency_Contact__c": "444-444-4444",
+            "Email__c": "dungtran@pivot.jp",
+            "Hire_Date__c": "2017-08-10"
+        },
+        {
+            "attributes": {
+                "type": "Employee_Hiring__c",
+                "referenceId": "Employee_Hiring__cRef6"
+            },
+            "Rank__c": "B",
+            "Rating__c": 3,
+            "Job_Category__c": "EMP",
+            "Position__c": "ADV-C",
+            "Status__c": "在職中",
+            "Department__c": "本社",
+            "Work_Location__c": "東京",
+            "Current_Address__c": "PIVOT会社",
+            "ffs__c": "BDE（8888）",
+            "Tel__c": "888-888-8888",
+            "Emergency_Contact__c": "333-333-3333",
+            "Email__c": "tienh@pivot.jp",
+            "Hire_Date__c": "2017-10-16"
+        },
+        {
+            "attributes": {
+                "type": "Employee_Hiring__c",
+                "referenceId": "Employee_Hiring__cRef7"
+            },
+            "Rank__c": "A",
+            "Rating__c": 4,
+            "Job_Category__c": "LEAD",
+            "Position__c": "ADV-H",
+            "Status__c": "在職中",
+            "Department__c": "支社",
+            "Work_Location__c": "HCM",
+            "Current_Address__c": "HCM",
+            "ffs__c": "BDE（7777）",
+            "Tel__c": "666-666-6666",
+            "Emergency_Contact__c": "777-777-7777",
+            "Email__c": "diem@pivot.jp",
+            "Hire_Date__c": "2014-09-25"
+        },
+        {
+            "attributes": {
+                "type": "Employee_Hiring__c",
+                "referenceId": "Employee_Hiring__cRef8"
+            },
+            "Rank__c": "S",
+            "Rating__c": 5,
+            "Job_Category__c": "Director",
+            "Position__c": "ADV-B",
+            "Status__c": "在職中",
+            "Department__c": "Fukuoka",
+            "Work_Location__c": "福岡支部",
+            "Current_Address__c": "福岡県福岡市早良区",
+            "ffs__c": "BDE（1234）",
+            "Tel__c": "000-000-0000",
+            "Emergency_Contact__c": "111-111-1111",
+            "Email__c": "kuribayashi@pivot.jp",
+            "Hire_Date__c": "2009-10-01"
+        }
+    ]
+}

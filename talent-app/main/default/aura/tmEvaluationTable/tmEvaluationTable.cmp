@@ -1,9 +1,8 @@
 <aura:component controller="TMSearchComment" implements="forceCommunity:availableForAllPageTypes" access="global">
     <aura:attribute name="comments" type="Object[]" />
     <aura:attribute name="searchResult" type="List" />
-    <aura:attribute name="mariaozawa" type="String" />
-   	<aura:attribute name="dt_from" type="Date" />
-    <aura:attribute name="dt_to" type="Date" />
+   	<aura:attribute name="dt_from" type="String" />
+    <aura:attribute name="dt_to" type="String" />
     <aura:handler name="init" value="{!this}" action="{!c.init}" />
 
     <div class="slds-grid slds-m-bottom--large">
@@ -11,10 +10,10 @@
             <div class="slds-grid">
                 <div class="slds-col--padded slds-size--1-of-12 slds-align-middle">評価期間</div>
                 <div class="slds-col--padded slds-size--3-of-12">
-                    <c:strike_datepicker label="From" valueFormat="yyyy-MM-dd" aura:id="dt_from" value="{!v.dt_from}" />
+                    <c:strike_datepicker label="From" valueFormat="yyyy-MM-dd" value="{!v.dt_from}" />
                 </div>
                 <div class="slds-col--padded slds-size--3-of-12">
-                    <c:strike_datepicker label="To" valueFormat="yyyy-MM-dd" aura:id="dt_to" value="{!v.dt_to}" />
+                    <c:strike_datepicker label="To" valueFormat="yyyy-MM-dd" value="{!v.dt_to}" />
                 </div>
                 <div class="slds-col--padded slds-size--1-of-12 slds-align-middle">
                     <button type="button" onclick="{!c.search}" class="slds-button slds-button--brand">検索</button>
