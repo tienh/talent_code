@@ -1,4 +1,4 @@
-<aura:component controller="EmployeeController"
+<aura:component controller="TMEmployee"
                 implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" access="global" >
 	
     <aura:attribute name="employees" type="Employee__c[]"/>

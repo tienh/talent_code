@@ -1,3 +1,11 @@
+.THIS h2 {
+	font-size: 1rem;
+}
+
+.THIS .slds-badge {
+    font-size: .8125rem;
+}
+
 .THIS .button_blue, .THIS .button_pink, .THIS .button_green {
     padding: .2rem .5rem;
     text-align: center;

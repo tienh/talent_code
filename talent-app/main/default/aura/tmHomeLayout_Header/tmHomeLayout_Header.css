@@ -1,5 +1,5 @@
 .THIS .logo-container {
-    /*background-image: t('url(' + brandLogoImage  + ')');*/
+    background-image: t('url(' + brandLogoImage  + ')');
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;

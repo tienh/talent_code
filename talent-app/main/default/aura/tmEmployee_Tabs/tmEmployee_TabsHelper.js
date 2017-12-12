@@ -31,6 +31,7 @@
                 console.log('Page %d loaded in %fms', performance.now() - startTime);
                 if (result != null) {
                     component.set("v.employee", result[0]);
+                    //debugger; // the JS debugger will pause here
                 }
             });
             var startTime = performance.now();

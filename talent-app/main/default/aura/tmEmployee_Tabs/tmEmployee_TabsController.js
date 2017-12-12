@@ -14,12 +14,12 @@
         //var tabs =  component.find('tabpage');
         var tabs =  component.find(findKey);
         for(var idx = 0; idx < tabs.length; idx++)
-         {
-             var tab = tabs[idx].getElement(0);
-             $A.util.removeClass(tab, 'slds-is-active');
-             $A.util.removeClass(component.find(tab.children[0].getAttribute('aria-controls')), 'slds-show');
-             $A.util.addClass(component.find(tab.children[0].getAttribute('aria-controls')), 'slds-hide');
-         }
+        {
+            var tab = tabs[idx].getElement(0);
+            $A.util.removeClass(tab, 'slds-is-active');
+            $A.util.removeClass(component.find(tab.children[0].getAttribute('aria-controls')), 'slds-show');
+            $A.util.addClass(component.find(tab.children[0].getAttribute('aria-controls')), 'slds-hide');
+        }
 
         $A.util.addClass(clickedTab, 'slds-is-active');
         $A.util.addClass(component.find(clickedTab.children[0].getAttribute('aria-controls')), 'slds-show');

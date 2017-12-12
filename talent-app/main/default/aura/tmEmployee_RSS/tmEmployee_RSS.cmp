@@ -1,10 +1,12 @@
-<aura:component implements="flexipage:availableForRecordHome,forceCommunity:availableForAllPageTypes,force:hasRecordId" access="global" >
-    
+<aura:component controller="TMRSS" implements="flexipage:availableForRecordHome,forceCommunity:availableForAllPageTypes,force:hasRecordId" access="global" >
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />
     <aura:attribute name="recordId" type="String"/>
-    <aura:attribute name="employee" type="Object" />
-    
+    <aura:attribute name="favRate" type="String"/>
     <aura:attribute name="fromDate" type="String" />
     <aura:attribute name="toDate" type="String" />
+    <aura:attribute name="counter" type="Integer" />
+    <aura:attribute name="rstSkillType" type="List" />
+    <aura:attribute name="rstProject" type="List" />
     
     <!-- SEARCH -->
     <div class="slds-grid slds-p-horizontal_small slds-m-bottom--large slds-wrap">
@@ -26,157 +28,56 @@
     </div>
     <!-- / SEARCH -->
     
-    <!-- LINE 1 -->
-    <div class="slds-grid slds-p-horizontal_small slds-m-bottom--xx-small slds-wrap">
-        <div class="slds-col slds-size--1-of-2 slds-medium-size--1-of-4 slds-large-size--1-of-8">
-            <button class="slds-button slds-button_stateful slds-not-selected button_blue" aria-live="assertive">
-                <span class="slds-text-not-selected">
-                    <lightning:icon class="button_icon_left" iconName="standard:opportunity" size="small"/>
-                    プレゼンテーション
-                </span>
-            </button>
+    <!-- SKILL REGION -->
+    <aura:if isTrue="{!v.counter > 0}">
+        <div class="slds-grid slds-p-horizontal_small slds-m-bottom_medium slds-wrap">
+             <aura:iteration items="{!v.rstSkillType}" var="type" indexVar="index">
+                 <div class="slds-col slds-size--1-of-1 slds-medium-size--2-of-6 slds-large-size--1-of-5">
+                     <h2 class="slds-text-align_center">
+                             <lightning:icon iconName="{#type.Icon_Disp__c}" size="medium"/>&nbsp; {#type.Name}
+                     </h2>
+                 </div>
+            </aura:iteration>
         </div>
-        <div class="slds-col slds-size--1-of-2 slds-medium-size--1-of-6 slds-large-size--1-of-10">
-            <button class="slds-button slds-button_stateful slds-not-selected button_blue" aria-live="assertive">
-                <span class="slds-text-not-selected">
-                    仕様設計
-                </span>
-            </button>
-        </div>
-        <div class="slds-col slds-size--1-of-3 slds-medium-size--1-of-4 slds-large-size--1-of-8">
-            <button class="slds-button slds-button_stateful slds-not-selected button_pink" aria-live="assertive">
-                <span class="slds-text-not-selected">
-                    <lightning:icon class="button_icon_left" iconName="standard:goals" size="small"/>
-                    マーケティング
-                </span>
-            </button>
-        </div>
-        <div class="slds-col slds-size--1-of-3 slds-medium-size--1-of-6 slds-large-size--1-of-8">
-            <button class="slds-button slds-button_stateful slds-not-selected button_green" aria-live="assertive">
-                <span class="slds-text-not-selected">
-                    <lightning:icon class="button_icon_left" iconName="standard:skill_requirement" size="small"/>
-                    情報設計
-                </span>
-            </button>
-        </div>
-        <div class="slds-col slds-size--1-of-3 slds-medium-size--1-of-6 slds-large-size--1-of-8 div_inline">
-                <img class="img_inline" src="{! '/tm/sfc/servlet.shepherd/version/download/' + '0687F000000lRKB'}" 
+        <div class="slds-grid slds-p-horizontal_small slds-m-bottom_large slds-wrap">
+            <aura:iteration items="{!v.rstSkillType}" var="type" indexVar="index">
+                <div class="slds-col slds-size--1-of-1 slds-medium-size--2-of-6 slds-large-size--1-of-5">
+                    <c:tmEmployee_RSS_Skill recordId="{!v.recordId}" typeId="{#type.Id}" typeOrder="{#type.Order__c}" />
+                </div>
+            </aura:iteration>
+            <div class="slds-col slds-size--1-of-1 slds-medium-size--1-of-4 slds-large-size--1-of-8 div_inline">
+                <img class="img_inline" src="{! '/tm/servlet/servlet.FileDownload?file=' + '0157F000000lgph'}" 
                      width="40" alt="Heart" border="0" />
-            <div class="text_inline">12</div>
+                <div class="text_inline">{!v.favRate}</div>
+            </div>
         </div>
-    </div>
-    <!-- / LINE 1 -->
-    <!-- LINE 2 -->
-    <div class="slds-grid slds-p-horizontal_small slds-m-bottom--large slds-wrap">
-        <div class="slds-col slds-size--1-of-2 slds-medium-size--1-of-4 slds-large-size--1-of-8">
-            <button class="slds-button slds-button_stateful slds-not-selected button_blue" aria-live="assertive">
-                <span class="slds-text-not-selected">
-                    <lightning:icon class="button_icon_left" iconName="standard:opportunity" size="small"/>
-                    情報設計
-                </span>
-            </button>
+    </aura:if>
+    <!-- / SKILL REGION -->
+    
+    <!-- PROJECT REGION -->
+    <aura:if isTrue="{!v.rstProject.length > 0}">
+        <div class="slds-grid slds-p-horizontal_small slds-m-bottom_medium slds-wrap">
+                <div class="slds-col slds-size--1-of-1 slds-medium-size--1-of-1 slds-large-size--1-of-1">
+                    <span><c:strike_badge label="所属チームリスト" theme="info" /></span>
+                </div>
         </div>
-        <div class="slds-col slds-size--1-of-2 slds-medium-size--1-of-4 slds-large-size--1-of-8">
-            <button class="slds-button slds-button_stateful slds-not-selected button_blue" aria-live="assertive">
-                <span class="slds-text-not-selected">
-                    PJ管理
-                </span>
-            </button>
-        </div>
-    </div>
-    <!-- / LINE 2 -->
-    <!-- LINE 3 -->
-    <div class="slds-grid slds-p-horizontal_small slds-m-bottom--xx-small slds-wrap">
-        <div class="slds-col slds-size--1-of-1 slds-medium-size--1-of-1 slds-large-size--1-of-1">
-            <span>所属チームリスト</span>
-        </div>
-    </div>
-    <!-- / LINE 3 -->
-    <!-- LINE 4 -->
-    <div class="slds-grid slds-p-horizontal_small slds-m-bottom--xx-small slds-wrap">
-        <div class="slds-col slds-size--1-of-1 slds-medium-size--1-of-4 slds-large-size--1-of-8">
-            <span>PNX開発チーム</span>
-        </div>
-        <div class="slds-col slds-size--1-of-3 slds-medium-size--1-of-4 slds-large-size--1-of-8">
-            <button class="slds-button slds-button_stateful slds-not-selected button_blue" aria-live="assertive">
-                <span class="slds-text-not-selected">
-                    <lightning:icon class="button_icon_left" iconName="standard:opportunity" size="small"/>
-                    プレゼンテーション
-                </span>
-            </button>
-        </div>
-        <div class="slds-col slds-size--1-of-3 slds-medium-size--1-of-4 slds-large-size--1-of-8">
-            <button class="slds-button slds-button_stateful slds-not-selected button_blue" aria-live="assertive">
-                <span class="slds-text-not-selected">
-                    仕様設計
-                </span>
-            </button>
-        </div>
-        <div class="slds-col slds-size--1-of-3 slds-medium-size--1-of-4 slds-large-size--1-of-10">
-            <button class="slds-button slds-button_stateful slds-not-selected button_pink" aria-live="assertive">
-                <span class="slds-text-not-selected">
-                    <lightning:icon class="button_icon_left" iconName="standard:goals" size="small"/>
-                    マーケティング
-                </span>
-            </button>
-        </div>
-    </div>
-    <!-- / LINE 4 -->
-    <!-- LINE 5 -->
-    <div class="slds-grid slds-p-horizontal_small slds-m-bottom--xx-small slds-wrap">
-        <div class="slds-col slds-size--1-of-1 slds-medium-size--1-of-4 slds-large-size--1-of-8">
-            <span>赤ペン開発チーム</span>
-        </div>
-        <div class="slds-col slds-size--1-of-3 slds-medium-size--1-of-4 slds-large-size--1-of-8">
-            <button class="slds-button slds-button_stateful slds-not-selected button_blue" aria-live="assertive">
-                <span class="slds-text-not-selected">
-                    <lightning:icon class="button_icon_left" iconName="standard:opportunity" size="small"/>
-                    プレゼンテーション
-                </span>
-            </button>
-        </div>
-        <div class="slds-col slds-size--1-of-3 slds-medium-size--1-of-4 slds-large-size--1-of-8">
-            <button class="slds-button slds-button_stateful slds-not-selected button_blue" aria-live="assertive">
-                <span class="slds-text-not-selected">
-                    仕様設計
-                </span>
-            </button>
-        </div>
-    </div>
-    <!-- / LINE 5 -->
-    <!-- LINE 6 -->
-    <div class="slds-grid slds-p-horizontal_small slds-m-bottom--large slds-wrap">
-        <div class="slds-col slds-size--1-of-1 slds-medium-size--1-of-4 slds-large-size--1-of-8">
-            <span>365移行チーム</span>
-        </div>
-        <div class="slds-col slds-size--1-of-2 slds-medium-size--1-of-6 slds-large-size--1-of-8">
-            <button class="slds-button slds-button_stateful slds-not-selected button_blue" aria-live="assertive">
-                <span class="slds-text-not-selected">
-                    仕様設計
-                </span>
-            </button>
-        </div>
-        <div class="slds-col slds-size--1-of-2 slds-medium-size--1-of-4 slds-large-size--1-of-8">
-            <button class="slds-button slds-button_stateful slds-not-selected button_blue" aria-live="assertive">
-                <span class="slds-text-not-selected">
-                    PJ管理
-                </span>
-            </button>
-        </div>
-        <div class="slds-col slds-size--1-of-2 slds-medium-size--1-of-6 slds-large-size--1-of-8">
-            <button class="slds-button slds-button_stateful slds-not-selected button_green" aria-live="assertive">
-                <span class="slds-text-not-selected">
-                    <lightning:icon class="button_icon_left" iconName="standard:skill_requirement" size="small"/>
-                    情報設計
-                </span>
-            </button>
-        </div>
-        <div class="slds-col slds-size--1-of-2 slds-medium-size--1-of-6 slds-large-size--1-of-8 div_inline">
-                <img class="img_inline" src="{! '/tm/sfc/servlet.shepherd/version/download/' + '0687F000000lRKB'}" 
-                     width="40" alt="Heart" border="0" />
-            <div class="text_inline">1</div>
-        </div>
-    </div>
-    <!-- / LINE 6 -->
+        
+        <aura:iteration items="{! v.rstProject }" var="project">
+            <div class="slds-grid slds-p-horizontal_small slds-m-bottom_x-small slds-border_top 
+                        slds-p-top_xx-small slds-p-bottom_xx-small  slds-wrap">
+                <div class="slds-col slds-size--1-of-1 slds-medium-size--1-of-4 slds-large-size--1-of-8">
+                    <span>{#project.Project__r.Name}</span>
+                </div>
+                <aura:iteration items="{!v.rstSkillType}" var="type" indexVar="index">
+                    <div class="slds-col slds-size--1-of-1 slds-medium-size--2-of-6 slds-large-size--1-of-5">
+                        <c:tmEmployee_RSS_Skill recordId="{!v.recordId}" projectId="{#project.Id}" typeId="{#type.Id}" typeOrder="{#type.Order__c}" />
+                    </div>
+                </aura:iteration>
+            </div>
+        </aura:iteration>
+    </aura:if>
+    <!-- / PROJECT REGION -->
+    
+    <div class="slds-m-top_x-large"></div>
 	
 </aura:component>

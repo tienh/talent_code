@@ -1,0 +1,17 @@
+<aura:component controller="TMEmployee" >
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />
+    <aura:attribute name="recordId" type="String"/>
+    <aura:attribute name="empList" type="Object[]"/>
+    
+    <c:strike_popover variant="panels" placement="auto right" theme="default" withClose="false">
+        <aura:set attribute="header">
+            <aura:iteration items="{!v.empList}" var="emp">
+                <c:tmEmployeeList_Pop recordId="{!v.recordId}" emp="{!emp}" 
+                                       choosen="{!emp.Id == v.recordId ? true : false}" />
+            </aura:iteration>
+        </aura:set>
+        <!--<lightning:button label="Add" variant="neutral" iconName="utility:add" iconPosition="left" />-->
+        <lightning:icon iconName="action:new_group" size="small"/>
+    </c:strike_popover>
+ 
+</aura:component>

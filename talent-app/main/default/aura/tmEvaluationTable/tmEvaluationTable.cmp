@@ -1,9 +1,10 @@
 <aura:component controller="TMSearchComment" implements="forceCommunity:availableForAllPageTypes" access="global">
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />
+    <aura:attribute name="recordId" type="String"/>
     <aura:attribute name="comments" type="Object[]" />
     <aura:attribute name="searchResult" type="List" />
    	<aura:attribute name="dt_from" type="String" />
     <aura:attribute name="dt_to" type="String" />
-    <aura:handler name="init" value="{!this}" action="{!c.init}" />
 
     <div class="slds-grid slds-m-bottom--large">
         <div class="slds-col">

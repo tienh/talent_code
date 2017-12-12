@@ -11,6 +11,17 @@
     <tab>Employees</tab>
     <tab>Employee__c</tab>
     <tab>Employee_Hiring__c</tab>
+    <tab>Project__c</tab>
+    <tab>Skill__c</tab>
+    <tab>Skill_Type__c</tab>
+    <tab>Skill_Level__c</tab>
+    <tab>Tag__c</tab>
+    <tab>Employee_Skill__c</tab>
+    <tab>Employee_Project__c</tab>
+    <tab>Project_Skill__c</tab>
+    <tab>Skill_Comment__c</tab>
+    <tab>Comment_Tag__c</tab>
+    <tab>Permission__c</tab>
     <uiType>Lightning</uiType>
     <utilityBar>Employee_Management_UtilityBar</utilityBar>
 </CustomApplication>

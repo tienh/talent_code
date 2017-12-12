@@ -1,36 +1,83 @@
 public class TMSaveComment {
     @AuraEnabled
-	public static List<Comment_Tag__c> getTag () {
-        return [SELECT ID__c, Content__c FROM Comment_Tag__c];
+	public static List<Tag__c> getTags () {
+        return [SELECT ID, Name FROM Tag__c];
     }
     
     @AuraEnabled
-	public static void saveComment (String Tag, String Comment) {
-        /*Comment_Tag__c commentTag1 = new Comment_Tag__c();
-        commentTag1.Content__c  = 'プロジェクト管理';
-        insert commentTag1;
+	public static List<Object> saveSkillComment (String createById, String employeeId, String skillId, String skillLevelId, String selectedTagsId, String comment) {
+        List<Object> result = new List<Object>();
+        Savepoint savePoint = Database.setSavepoint();
+        TMResponseMessage message = new TMResponseMessage();
         
-        Comment_Tag__c commentTag2 = new Comment_Tag__c();
-        commentTag2.Content__c  = 'PHP';
-        insert commentTag2;
+        Employee__c currentUser = [
+            SELECT Employee_Hiring__r.Permission__r.Name 
+            FROM Employee__c 
+            WHERE User__c = :UserInfo.getUserId() 
+            LIMIT 1
+        ];
         
-        Comment_Tag__c commentTag3 = new Comment_Tag__c();
-        commentTag3.Content__c  = 'アカウントマネジメント';
-        insert commentTag3;
-        
-        Comment_Tag__c commentTag4 = new Comment_Tag__c();
-        commentTag4.Content__c  = 'バックエンドテクノロジー';
-        insert commentTag4;
-        
-        Comment_Tag__c commentTag5 = new Comment_Tag__c();
-        commentTag5.Content__c  = '仕様設計';
-        insert commentTag5;*/
-        
-        List<Comment_Tag__c> lstExistCommentTag = [SELECT Content__c FROM Comment_Tag__c WHERE Content__c = :Tag];
-        
-        if (lstExistCommentTag.IsEmpty())
+        if (currentUser.Employee_Hiring__r.Permission__r.Name != 'Manager')
         {
-            
+            message.status = 'error';
+            message.message = '権限がない。';
+            result.Add(JSON.serialize(message));
+            return result;
         }
+        
+        try
+        {
+            DateTime current = system.today();
+            Skill_Comment__c item = new Skill_Comment__c();
+            item.Create_By__c = createById;
+            item.Create_When__c = current;
+            item.Employee_ID__c = employeeId;
+            item.Last_Modified_When__c = current;
+            item.Name = comment;
+            item.Skill_ID__c = skillId;
+            item.Skill_Level_ID__c  = skillLevelId;
+            insert item;
+            
+            List<Comment_Tag__c> lstCommentTag = new List<Comment_Tag__c>();
+            for (Id tagId : selectedTagsId.split(';')) {
+                lstCommentTag.Add(new Comment_Tag__c(
+                    Name = Id.valueOf(item.Id) + '-' + Id.valueOf(tagId),
+                    Skill_Comment_ID__c = item.Id,
+                    Tag_ID__c = tagId
+                ));
+            }
+            insert lstCommentTag;
+            
+            message.status = 'OK';
+            result.Add(JSON.serialize(message));
+            result.Add(getSavedItem(item.Id));
+        }
+        catch(Exception e)
+        {
+        	Database.rollback(savePoint);
+            message.status = 'error';
+            message.message = e.getMessage();
+            result.Add(JSON.serialize(message));
+        }
+        
+        return result;
     }
+    
+    private static List<Skill_Comment__c> getSavedItem(Id itemId) {
+        return [SELECT  Skill_Comment__c.ID,
+            	Create_When_Disp__c,
+                Create_By__r.Name,
+                Create_By__r.Employee_Hiring__r.Team__c,
+                LastModifiedById,
+                Last_Modified_When__c,
+                Name,
+                Skill_ID__c,
+                Skill_ID__r.Name,
+                Skill_Level_ID__c,
+                Skill_Level_ID__r.Name,
+                ( SELECT Tag_ID__r.Name FROM Skill_Comments__r )
+            FROM Skill_Comment__c
+            WHERE Id = :itemId
+ 		];
+	}
 }

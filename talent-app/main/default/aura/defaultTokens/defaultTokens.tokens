@@ -6,7 +6,7 @@ Website: http://www.lightningstrike.io
 GitHub: https://github.com/appiphony/Strike-Components
 License: BSD 3-Clause License
 -->
-<aura:tokens extends="force:base">
+<aura:tokens extends="forceCommunity:base">
     <aura:token name="fontSizeSmall" value="0.75rem"/>
     <aura:token name="spacingXxLarge" value="3rem"/>
     <aura:token name="fontSizeXxLarge" value="1.75rem"/>

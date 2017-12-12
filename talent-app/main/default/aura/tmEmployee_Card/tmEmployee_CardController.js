@@ -1,7 +1,7 @@
 ({
-	myAction : function(component, event, helper) {
-		
-	},
+	doInit: function(component, event, helper) {
+        component.set("v.myPath", window.localStorage.getItem('myURL'));
+    },
     
     navigateToDetailsView : function(component) {
 		var employee = component.get("v.employee");

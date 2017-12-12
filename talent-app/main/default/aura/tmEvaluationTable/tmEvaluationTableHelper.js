@@ -8,8 +8,7 @@
         action.setCallback(this, function(response) {
             var state = response.getState();
             if (state === "SUCCESS") {
-                var storeResponse = response.getReturnValue();
-                component.set("v.searchResult", storeResponse);
+                component.set("v.searchResult", response.getReturnValue());
             }
         });
         

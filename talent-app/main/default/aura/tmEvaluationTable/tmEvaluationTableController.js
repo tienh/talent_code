@@ -1,5 +1,5 @@
 ({
-    init: function(cmp, evt) {
+    init: function(component, event, helper) {
     },
     
     search: function(component, event, helper) {

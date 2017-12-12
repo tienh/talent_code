@@ -1,3 +1,10 @@
-.THIS th.personal-img {
-    
+.THIS .banner-img {
+    max-width: 350px;
+}
+
+.THIS .selectedRow {
+    background-color: #d9ffdf;
+    color: white;
+    font-family: monospace;
+    font-style: italic;
 }

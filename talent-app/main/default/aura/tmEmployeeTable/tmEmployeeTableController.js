@@ -1,5 +1,4 @@
 ({
-
     doInit: function(component, event, helper) {
         helper.getEmployees(component);
     },
@@ -11,7 +10,7 @@
 	},
     
     onEmployeeSearchChange: function(component, event, helper) {
-        debugger; // the JS debugger will pause here
+        //debugger; // the JS debugger will pause here
         component.set("v.searchKey", event.getParam("searchKey"));
         helper.getEmployees(component);
     },
@@ -34,5 +33,6 @@
 		var page = component.get("v.page") || 1;
         page = page + 1;
         helper.getEmployees(component, page);
-	}
+	},
+   	
 })

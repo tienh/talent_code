@@ -1,0 +1,24 @@
+<aura:component controller="TMRSS" implements="forceCommunity:availableForAllPageTypes" access="global">
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />
+    <aura:attribute name="recordId" type="String"/>
+    <aura:attribute name="projectId" type="String" />
+    <aura:attribute name="typeId" type="String" />
+    <aura:attribute name="typeOrder" type="String" />
+    <aura:attribute name="cssClass" type="String" />
+    <aura:attribute name="length" type="Integer" />
+    <aura:attribute name="result" type="List" />
+    
+    <aura:iteration items="{!v.result}" var="item">
+        <div class="slds-cell-wrap">
+            <lightning:button aura:id="card" variant="neutral" 
+                              class="{!v.cssClass}"
+                              label="{!v.projectId ? 
+                                     item.Employee_Skill__r.Skill__r.Name + '&nbsp;&nbsp;&nbsp;&nbsp;' 
+                                     		+ item.Skill_Level__r.Skill_Num__c
+                                     : item.Skill__r.Name + '&nbsp;&nbsp;&nbsp;&nbsp;' 
+                                     		+ item.Skill_Level__r.Skill_Num__c}" 
+                              iconName="utility:crossfilter" iconPosition="left" />
+        </div>
+    </aura:iteration>
+	
+</aura:component>
