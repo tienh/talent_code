@@ -1,0 +1,52 @@
+.THIS .btn_blue, .THIS .btn_pink, .THIS .btn_green {
+    /*padding: .2rem .5rem;*/
+    text-align: center;
+    vertical-align: middle;
+    -webkit-transition: border .15s linear;
+    transition: border .15s linear;
+    border-color: #d4d4d4;
+    color: white;
+    /*min-width: 120px;*/
+}
+
+.THIS .btn_blue {
+    border: 1px solid rgb(217, 219, 221);
+    background-color: rgb(0, 112, 210);
+}
+
+.THIS .btn_pink {
+    border: 1px solid rgb(217, 219, 221);
+    background-color: rgb(234, 130, 136);
+}
+
+.THIS .btn_green {
+    border: 1px solid rgb(75, 202, 129);
+    background-color: rgb(37, 169, 41);
+}
+
+.THIS .btn_icon_left {
+    margin-right: .2rem;
+}
+
+.THIS .div_inline {
+    position: relative;
+}
+
+.THIS .img_inline {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.THIS .text_inline {
+    z-index: 100;
+  	position: absolute;
+    text-align: center;
+    vertical-align: middle;
+    color: white;
+    top: 15px;
+    left: 11%;
+    min-height: 100%;
+    min-width: 100%;
+    transform: translate(-50%, -50%);
+}

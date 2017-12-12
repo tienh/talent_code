@@ -1,7 +1,8 @@
 <aura:component implements="forceCommunity:availableForAllPageTypes" access="global">
+     <aura:handler name="init" value="{!this}" action="{!c.init}" />
+    <aura:attribute name="recordId" type="String"/>
     <aura:attribute name="types" type="Object[]" />
     <aura:attribute name="personalities" type="Object[]" />
-    <aura:handler name="init" value="{!this}" action="{!c.init}" />
 
     <table class="slds-table slds-table--bordered">
         <thead>
@@ -23,9 +24,6 @@
                     <td class="personality-name" onclick="{! c.toggle }">{! personality.name }</td>
                     <aura:iteration items="{! personality.children }" var="child">
                         <td>
-                            <c:tmOverlayAddComment />
-                            <c:tmSkillCommentBlock />
-                            <button class="slds-button">Read more</button>
                         </td>
                     </aura:iteration>
                 </tr>

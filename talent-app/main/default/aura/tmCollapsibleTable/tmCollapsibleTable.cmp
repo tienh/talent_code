@@ -1,35 +1,34 @@
-<aura:component implements="forceCommunity:availableForAllPageTypes" access="global">
-    <aura:attribute name="levels" type="Object[]" />
-    <aura:attribute name="skills" type="Object[]" />
+<aura:component controller="TMSkill" implements="forceCommunity:availableForAllPageTypes" access="global">
     <aura:handler name="init" value="{!this}" action="{!c.init}" />
-
+    <aura:attribute name="recordId" type="String"/>
+    <aura:attribute name="resultSkill" type="List" />
+    <aura:attribute name="resultSkillLevel" type="List" />
+    
     <table class="slds-table slds-table--bordered">
         <thead>
             <tr>
-                <td class="skill-name"></td>
-                <aura:iteration items="{! v.levels }" var="level">
-                    <td>
+                <td></td>
+                <aura:iteration items="{!v.resultSkillLevel}" var="skillLevel">
+                    <td class="skill-name">
                         <h2 class="slds-text-align_center">
-                            <lightning:icon iconName="{! level.icon }" size="small"/>
-                            &nbsp; {! level.name }
+                            <lightning:icon iconName="{!skillLevel.Icon__c}" size="small"/>
+                            &nbsp; {!skillLevel.Name}
                         </h2>
                     </td>
                 </aura:iteration>
             </tr>
         </thead>
         <tbody>
-            <aura:iteration items="{! v.skills }" var="skill" indexVar="index">
+            <aura:iteration items="{!v.resultSkill}" var="skill" indexVar="index">
                 <tr>
-                    <td data-index="{! index }" onclick="{! c.toggle }" colspan="{! skill.expanded ? 1 : skill.children.length + 1 }">
-                        {! skill.name }
-                        <lightning:icon iconName="{! skill.expanded ? 'utility:chevrondown' : 'utility:chevronright' }" size="x-small"/>
+                    <td data-index="{!index}" onclick="{!c.toggle}" colspan="{!skill.Expanded__c ? 1 : v.resultSkillLevel.length + 1}">
+                        {!skill.Name}
+                        <lightning:icon aura:id="{!index}" iconName="{!skill.Expanded__c ? 'utility:chevrondown' : 'utility:chevronright'}" size="x-small"/>
                     </td>
-                    <aura:if isTrue="{! skill.expanded }">
-                        <aura:iteration items="{! skill.children }" var="child">
-                            <td>
-                                <c:tmOverlayAddComment />
-                                <c:tmSkillCommentBlock />
-                                <button class="slds-button">Read more</button>
+                    <aura:if isTrue="{!skill.Expanded__c}">
+                        <aura:iteration items="{!v.resultSkillLevel}" var="skillLevel">
+                            <td class="slds-align-top">
+                                <c:tmSkillCommentBlock recordId="{!v.recordId}" skillId="{#skill.Id}" skillLevelId="{#skillLevel.Id}" />
                             </td>
                         </aura:iteration>
                 </aura:if>

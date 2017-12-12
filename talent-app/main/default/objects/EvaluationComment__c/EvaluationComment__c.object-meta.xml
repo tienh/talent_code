@@ -53,7 +53,7 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
-    <label>EvaluationComment</label>
+    <label>Evaluation Comment</label>
     <nameField>
         <label>E Name</label>
         <type>Text</type>

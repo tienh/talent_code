@@ -1,0 +1,5 @@
+<aura:component >
+	<c:strike_modal aura:id="messageModal" title="Confirmation" variant="error" primaryButtonLabel="xx" secondaryButtonLabel="xx" showHeader="true" showFooter="true" showClose="true" showModal="false">
+    	<p>Are you sure?</p>
+	</c:strike_modal>
+</aura:component>

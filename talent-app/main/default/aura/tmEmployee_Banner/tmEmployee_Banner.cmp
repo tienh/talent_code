@@ -1,4 +1,4 @@
-<aura:component controller="EmployeeController"
+<aura:component controller="TMEmployee"
                 implements="flexipage:availableForRecordHome,forceCommunity:availableForAllPageTypes,force:hasRecordId" access="global" >
     
     <aura:attribute name="recordId" type="String"/>
@@ -17,9 +17,10 @@
                 <div class="slds-media__body">
                     <h2>
                         <a href="javascript:void(0);" class="slds-card__header-link slds-truncate">
-                            <span class="slds-text-heading_small">Basic info</span>
+                            <span class="slds-text-heading_small">Base Information</span>
                         </a>&nbsp;
                         <!--<ui:outputText class="form-control" aura:id="recid" value="{!v.recordId}" />-->
+                        <c:tmEmployeeList recordId="{!v.recordId}" />
                     </h2>
                 </div>
             </header>
@@ -34,7 +35,7 @@
                         <th scope="row" class="personal-img slds-text-align_center">
                             <div class="slds-m-top_medium slds-m-bottom_medium slds-cell-wrap">
                                 <span>
-                                    <img src="{! v.employee.Picture__c }" alt="Picture" border="0" />
+                                    <img src="{! v.employee.Picture__c }" alt="Picture" border="0" class="banner-img" />
                                 </span>
                                 <!--<lightning:icon iconName="action:user" size="large"/>-->
                             </div>
@@ -42,7 +43,7 @@
                         <td class="slds-text-align_center">
                             <div class="slds-m-top_medium slds-m-bottom_medium slds-cell-wrap">
                                 <p>{! v.employee.Last_Name__c } &nbsp; {! v.employee.First_Name__c }</p>
-                                <p>{! v.employee.Name }</p>
+                                <p>（{! v.employee.Name }）</p>
                             </div>
                         </td>
                         <td class="slds-text-align_center">
@@ -58,8 +59,8 @@
                                 <p>
                                     <!--<lightning:icon iconName="standard:feed" size="large"/>-->
                                     <span>
-                                        <img src="{! '/tm/sfc/servlet.shepherd/version/download/' + 
-                                                  v.employee.Employee_Hiring__r.Rank_Ref_CM__c }" width="60" alt="Rank" border="0" />
+                                        <img src="{! '/tm/servlet/servlet.FileDownload?file=' + 
+                                                  v.employee.Employee_Hiring__r.Rank_Ref__c }" width="60" alt="Rank" border="0" />
                                     </span>
                                 </p>
                             </div>
@@ -70,8 +71,10 @@
                                 <p>
                                     <!--<lightning:icon iconName="standard:thanks" size="large"/>-->
                                     <span>
-                                        <img src="{! '/tm/sfc/servlet.shepherd/version/download/' + 
-                                                  v.employee.Employee_Hiring__r.Rating_Ref_CM__c }" width="142" alt="Rank" border="0" />
+                                        <img src="{! '/tm/servlet/servlet.FileDownload?file=' + 
+                                                  v.employee.Employee_Hiring__r.Rating_Ref__c }" width="142" alt="Rating" border="0" />
+                                        <!--<img src="{! '/tm/sfc/servlet.shepherd/version/download/' + 
+                                                  v.employee.Employee_Hiring__r.Rating_Ref_CM__c }" width="142" alt="Rating" border="0" />-->
                                     </span>
                                 </p>
                             </div>

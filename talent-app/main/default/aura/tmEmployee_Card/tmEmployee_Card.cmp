@@ -1,6 +1,7 @@
 <aura:component >
-	
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     <aura:attribute name="employee" type="Employee__c"/>
+    <aura:attribute name="myPath" type="String" />
 
     <aura:registerEvent name="navigateToSObject" type="force:navigateToSObject"/>
     <aura:registerEvent name="selectSObject" type="ltng:selectSObject"/>
@@ -10,7 +11,7 @@
             <div>
                 <!--<img scr="{#v.employee.Rank_IMG__c}"/>-->
                 <img class="rank-pos"
-                     src="{#'/servlet/servlet.FileDownload?file=' + v.employee.Rank_Ref__c }"/>
+                     src="{#v.myPath + '/servlet/servlet.FileDownload?file=' + v.employee.Rank_Ref__c }"/>
             </div>
         	<div class="lower-third">
             	<h1 class="truncate">{#v.employee.Name}</h1>

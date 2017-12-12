@@ -1,13 +1,30 @@
-<aura:component implements="forceCommunity:availableForAllPageTypes" access="global">
-	<aura:attribute name="comments" type="Object[]" />
+<aura:component controller="TMSkillComment" implements="forceCommunity:availableForAllPageTypes" access="global">
     <aura:handler name="init" value="{!this}" action="{!c.init}" />
-
-    <aura:iteration items="{! v.comments }" var="comment">
-   		<div class="slds-m-top_medium slds-m-bottom_medium slds-cell-wrap">
-            <a href="javascript：void(0)">#{! comment.project }</a>
-            <span>{! comment.team }</span>
-            <p>{! comment.comment }</p>
-            <p>(<span>{! comment.date }</span>&nbsp;<span>{! comment.author }</span>)</p>
-    	</div>
-	</aura:iteration>
+    <aura:attribute name="userInfo" type="Object" />
+    <aura:attribute name="recordId" type="String"/>
+    <aura:attribute name="skillId" type="String" />
+    <aura:attribute name="skillLevelId" type="String" />
+    <aura:attribute name="top" type="String" default="3" />
+    <aura:attribute name="skip" type="String" default="0" />
+    <aura:attribute name="count" type="Integer" />
+    <aura:attribute name="result" type="List" />
+    
+    <aura:if isTrue="{!v.userInfo.Employee_Hiring__r.Permission__r.Name == 'Manager'}">
+    <c:tmOverlayAddComment result="{!v.result}" recordId="{!v.recordId}" skillId="{#v.skillId}" skillLevelId="{#v.skillLevelId}" skip="{!v.skip}" />
+    </aura:if>
+    
+    <aura:iteration items="{!v.result}" var="item">
+        <div class="slds-m-top_medium slds-m-bottom_medium slds-cell-wrap">
+            <aura:iteration items="{!item.Skill_Comments__r}" var="tag">
+            <a href="javascript：void(0)">#{!tag.Tag_ID__r.Name}</a>&nbsp;
+            </aura:iteration>
+            <span>{!item.Create_By__r.Employee_Hiring__r.Team__c}チーム</span>
+            <p>{!item.Name}</p>
+            <p>({!item.Create_When_Disp__c}&nbsp;{!item.Create_By__r.Name})</p>
+        </div>
+    </aura:iteration>
+    
+    <aura:if isTrue="{!and(greaterthan(v.count, v.top), lessthan(v.result.length, v.count))}">
+    <button class="slds-button" onclick="{!c.getMore}">Read more</button>
+    </aura:if>
 </aura:component>

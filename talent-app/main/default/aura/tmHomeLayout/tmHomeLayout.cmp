@@ -1,4 +1,5 @@
 <aura:component implements="forceCommunity:themeLayout">
+    
     <div class="slds-scope">
         <!-- HEADER -->
         <c:tmHomeLayout_Header />

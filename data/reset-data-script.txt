@@ -1,0 +1,2 @@
+delete [SELECT Id FROM Employee__c];
+delete [SELECT Id FROM Employee_Hiring__c];

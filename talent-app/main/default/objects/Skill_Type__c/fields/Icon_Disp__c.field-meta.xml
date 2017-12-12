@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Icon_Disp__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE(Order__c, 
+1, "standard:goals", 
+2, "standard:lead", 
+3, "standard:solution", 
+"" 
+)</formula>
+    <label>FML Icon</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>
