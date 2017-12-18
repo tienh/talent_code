@@ -56,10 +56,12 @@
             
             if (state === "SUCCESS") {
                 var item = response.getReturnValue();
-                for (i in item[0].Skill_Comments__r) { //component.get("v.tabId")  == 'tab-scoped-1' ? item[0].Skill_Comments__r : item[0].Personality_Comments__r) {
-                	console.log(item[0][i].Tag_ID__c);
+                for (var i in component.get("v.tabId")  == 'tab-scoped-1' ? item[0].Skill_Comments__r : item[0].Personality_Comments__r) {
+                	var tag = component.get("v.tabId")  == 'tab-scoped-1' ?  item[0].Skill_Comments__r[i] : item[0].Personality_Comments__r[i];
+                    console.log(tag.Tag_ID__r.Name);
+                    component.set("v.selectedTags", tag.Tag_ID__r.Name);
                 }
-                //console.log(item[0].Skill_Comments__r);
+                console.log(component.set("v.selectedTags"));
                 //component.set("v.selectedTags", item[0].Name);
                 component.set("v.comment", item[0].Name);
             }
