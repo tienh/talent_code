@@ -51,6 +51,10 @@
         <fields>NAME</fields>
         <relatedList>Comment_Tag__c.Tag_ID__c</relatedList>
     </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>Personality_Comment_Tag__c.Tag_ID__c</relatedList>
+    </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
     <showInteractionLogPanel>false</showInteractionLogPanel>

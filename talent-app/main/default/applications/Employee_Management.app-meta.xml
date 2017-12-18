@@ -22,6 +22,10 @@
     <tab>Skill_Comment__c</tab>
     <tab>Comment_Tag__c</tab>
     <tab>Permission__c</tab>
+    <tab>Personality_Type__c</tab>
+    <tab>Personality_Method__c</tab>
+    <tab>Personality_Comment__c</tab>
+    <tab>Personality_Comment_Tag__c</tab>
     <uiType>Lightning</uiType>
     <utilityBar>Employee_Management_UtilityBar</utilityBar>
 </CustomApplication>

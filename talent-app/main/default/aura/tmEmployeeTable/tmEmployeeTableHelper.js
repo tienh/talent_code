@@ -5,8 +5,6 @@
         var pageSize = component.get("v.pageSize");
 		action.setParams({
       		"searchKey": component.get("v.searchKey"),
-      		"minPrice": component.get("v.minPrice"),
-      		"maxPrice": component.get("v.maxPrice"),
             "pageSize": pageSize,
             "pageNumber": page || 1
     	});

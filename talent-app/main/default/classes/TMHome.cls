@@ -5,6 +5,7 @@ public class TMHome {
             SELECT ID, 
             	Name, 
             	Thumbnail__c,
+            	User__c,
             	Employee_Hiring__r.Permission__r.Name 
             FROM Employee__c 
             WHERE User__c = :UserInfo.getUserId() 

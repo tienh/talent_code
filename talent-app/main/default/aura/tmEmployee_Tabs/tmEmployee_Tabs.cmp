@@ -3,6 +3,7 @@
 	
     <aura:attribute name="recordId" type="String"/>
     <aura:attribute name="employee" type="Object" />
+    <aura:attribute name="tabId" type="String"/>
     <aura:handler name="init" value="{!this}" action="{!c.init}" />
     
     <div class="slds-tabs_default">
@@ -53,13 +54,13 @@
                 </ul>
                 <!-- / SUB TAB -->
                 <div aura:id="tab-scoped-1" class="slds-tabs_scoped__content slds-show" role="tabpanel" aria-labelledby="tab-scoped-1__item">
-                	<c:tmCollapsibleTable recordId="{!v.recordId}" />
+                	<c:tmSkillTable recordId="{!v.recordId}" tabId="tab-scoped-1" />
                 </div>
                 <div aura:id="tab-scoped-2" class="slds-tabs_scoped__content slds-hide" role="tabpanel" aria-labelledby="tab-scoped-2__item">
-                    <c:tmPersonalityTable recordId="{!v.recordId}" />
+                    <c:tmPersonalityTable recordId="{!v.recordId}" tabId="tab-scoped-2" />
                 </div>
                 <div aura:id="tab-scoped-3" class="slds-tabs_scoped__content slds-hide" role="tabpanel" aria-labelledby="tab-scoped-3__item">
-					<c:tmEvaluationTable recordId="{!v.recordId}" />
+					<c:tmEvaluationTable recordId="{!v.recordId}" tabId="tab-scoped-3" />
 				</div>
             </div>
             <!-- / TIMELINE CONTENT -->

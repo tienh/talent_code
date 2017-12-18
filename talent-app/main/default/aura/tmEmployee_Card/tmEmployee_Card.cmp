@@ -5,22 +5,23 @@
 
     <aura:registerEvent name="navigateToSObject" type="force:navigateToSObject"/>
     <aura:registerEvent name="selectSObject" type="ltng:selectSObject"/>
-    
+
 	<a onclick="{!c.employeeSelected}">
     	<div style="{# 'background-image:url(' + v.employee.Thumbnail__c + ')'}">
             <div>
-                <!--<img scr="{#v.employee.Rank_IMG__c}"/>-->
                 <img class="rank-pos"
-                     src="{#v.myPath + '/servlet/servlet.FileDownload?file=' + v.employee.Rank_Ref__c }"/>
+                     src="{#v.myPath + '/servlet/servlet.FileDownload?file=' + v.employee.Employee_Hiring__r.Rank_Ref__c }"/>
             </div>
         	<div class="lower-third">
             	<h1 class="truncate">{#v.employee.Name}</h1>
-            	<div>Rank: {#v.employee.Rank__c}</div>
-            	<div>Job: {#v.employee.Job__c}&nbsp;&nbsp;&nbsp;Job title: {#v.employee.Job_Title__c}</div>
-            	<!--<div><lightning:formattedNumber value="{#v.employee.Price__c}" style="currency" currencyCode="USD"/></div>-->
+            	<div>ランク: {#v.employee.Employee_Hiring__r.Rank__c}</div>
+            	<div>
+                    <span>職種: {#v.employee.Employee_Hiring__r.Job_Category__c}</span>&nbsp;&nbsp;&nbsp;
+                    <span>職位: {#v.employee.Employee_Hiring__r.Position__c}</span>
+                </div>
         	</div>
 	        <lightning:buttonIcon iconName="utility:zoomin" variant="bare-inverse" size="medium" onclick="{!c.navigateToDetailsView}" class="open-button"/>
     	</div>
 	</a>
-    
+
 </aura:component>

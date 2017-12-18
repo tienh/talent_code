@@ -6,41 +6,62 @@
     ClearValueHelper: function(component, event) {
         component.set("v.selectedTags", "");
         component.set("v.comment", "");
-        component.find("tag").destroy();
+        component.find("selectedItem");
+        
+        /*$A.get("e.c:tmDestroyTagPicklistEvt").fire();
         
         $A.createComponent(
-            "c:strike_multiSelectPicklist",
+            "c:tmTagPicklist",
             {
-                "aura:id": "tag",
-                "value": "",
-                "placeholder": "タグ",
-                "label": "",
+                "aura:id":"tagPicklist",
+                "selectedTags": component.getReference("v.selectedTags")
             },
-            function(newButton, status, errorMessage){
-                //Add the new button to the body array
+            function(newComponent , status, errorMessage){
                 if (status === "SUCCESS") {
-                    var body = component.get("v.body");
-                    body.push(newButton);
-                    component.set("v.body", body);
+                    var parent = component.find("divPicklist");
+                    var body = parent.get("v.body");
+                    body.push(newComponent);
+                    parent.set("v.body", body);
                 }
                 else if (status === "INCOMPLETE") {
-                    console.log("No response from server or client is offline.")
-                    // Show offline error
+                    console.log("No response from server or client is offline.");
                 }
                 else if (status === "ERROR") {
                     console.log("Error: " + errorMessage);
-                    // Show error message
                 }
             }
-        );
+        );*/
   	},
     
-    GetTagsHelper: function(component, event) {
-        var action = component.get("c.getTags");
+    GetItemHelper: function(component, event) {
+        var action = null;
+        switch(component.get("v.tabId"))
+        {
+            case "tab-scoped-1":
+                action = component.get("c.getSkillComment");
+                break;
+           	case "tab-scoped-2":
+                action = component.get("c.getPersonalityComment");
+                break;
+            case "tab-scoped-3":
+                action = component.get("c.getEvaluationComment");
+                break;
+        }
+        action.setParams({
+            'itemId': component.get("v.itemId")
+        });
+       
         action.setCallback(this, function(response) {
             var state = response.getState();
+            
             if (state === "SUCCESS") {
-                component.set("v.tags", response.getReturnValue());
+                var item = response.getReturnValue();
+                for (i in item[0].Skill_Comments__r) { //component.get("v.tabId")  == 'tab-scoped-1' ? item[0].Skill_Comments__r : item[0].Personality_Comments__r) {
+                	console.log(item[0][i].Tag_ID__c);
+                }
+                //console.log(item[0].Skill_Comments__r);
+                //component.set("v.selectedTags", item[0].Name);
+                component.set("v.comment", item[0].Name);
             }
         });
         
@@ -48,12 +69,24 @@
     },
     
    SaveHelper: function(component, event) {
-        var action = component.get("c.saveSkillComment");
+        var action = null;
+        switch(component.get("v.tabId"))
+        {
+            case "tab-scoped-1":
+                action = component.get("c.saveSkillComment");
+                break;
+           	case "tab-scoped-2":
+                action = component.get("c.savePersonalityComment");
+                break;
+            case "tab-scoped-3":
+                action = component.get("c.saveEvaluationComment");
+                break;
+        }
         action.setParams({
             'createById': JSON.parse(window.localStorage.getItem('UserInfo')).Id,
             'employeeId': component.get("v.recordId"),
-            'skillId': component.get("v.skillId"),
-            'skillLevelId': component.get("v.skillLevelId"),
+            'typeId': component.get("v.typeId"),
+            'modeId': component.get("v.modeId"),
             'selectedTagsId': component.get("v.selectedTags"),
             'comment': component.get("v.comment")
         });

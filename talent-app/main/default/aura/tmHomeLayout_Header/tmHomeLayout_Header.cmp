@@ -15,8 +15,6 @@
                 <span class="slds-align_absolute-center">
                     <img src="{! '/tm/servlet/servlet.FileDownload?file=' + '0157F000000lgI6' }" 
                          width="100" alt="Banner" border="0" />
-                    <!--<img src="{! '/tm/sfc/servlet.shepherd/version/download/' + '0687F000000lVMk' }" 
-                     width="100" alt="Banner" border="0" />-->
                 </span>
                 <!--<span class="slds-text-align_center">
           			<h1 class="slds-page-header__title" title="HEADER">HEADER</h1>

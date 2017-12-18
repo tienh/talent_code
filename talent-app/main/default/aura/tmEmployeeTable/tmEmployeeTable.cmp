@@ -1,20 +1,15 @@
 <aura:component controller="TMEmployee"
                 implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" access="global" >
 	
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler event="c:tmEvt_Employee_SearchChange" action="{!c.onEmployeeSearchChange}"/>
+    
     <aura:attribute name="employees" type="Employee__c[]"/>
     <aura:attribute name="pageSize" type="integer" default="8"/>
     <aura:attribute name="page" type="integer"/>
     <aura:attribute name="pages" type="integer"/>
     <aura:attribute name="total" type="integer"/>
-
     <aura:attribute name="searchKey" type="String" default=""/>
-    <aura:attribute name="minPrice" type="integer" default="0"/>
-    <aura:attribute name="maxPrice" type="integer" default="10000000"/>
-    
-	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
-    <aura:handler event="c:tmEvt_Employee_SearchChange" action="{!c.onEmployeeSearchChange}"/>
-    <!--<aura:handler event="c:RangeChange" action="{!c.onRangeChange}"/>-->
-    <!--<aura:handler event="c:EinsteinVisionEvent" action="{!c.onEinsteinVisionEvent}"/>-->
 
     <lightning:layout horizontalAlign="center" multipleRows="true">
         <aura:iteration items="{!v.employees}" var="employee">
