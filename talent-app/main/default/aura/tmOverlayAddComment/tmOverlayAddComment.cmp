@@ -1,36 +1,66 @@
-<aura:component controller="TMSaveComment" >
+<aura:component controller="TMSaveComment">
     <aura:handler name="init" value="{!this}" action="{!c.init}" />
+    <aura:handler name="strike_evt_modalPrimaryButtonClicked" event="c:strike_evt" action="{!c.deleteItem}"/>
+    
+    <aura:registerEvent name="toggleSpinner" type="c:tmToggleSpinnerEvt" />
+    
+    <aura:attribute name="editMode" type="Integer" />
     <aura:attribute name="result" type="List" />
     <aura:attribute name="recordId" type="String"/>
-    <aura:attribute name="skillId" type="String" />
-    <aura:attribute name="skillLevelId" type="String" />
-     <aura:attribute name="skip" type="String" />
-    <aura:attribute name="tags" type="List" />
-    <aura:attribute name="selectedTags" type="String" />
-    <aura:attribute name="comment" type="String" />
+    <aura:attribute name="tabId" type="String"/>
+    <aura:attribute name="itemId" type="String" />
+    <aura:attribute name="typeId" type="String" />
+    <aura:attribute name="modeId" type="String" />
     
-    <lightning:button aura:id="add" label="Add" variant="neutral" iconName="utility:add" iconPosition="left" onclick="{!c.showToggle}" />
+    <aura:attribute name="currentYear" access="private" type="String" />
+    <aura:attribute name="value" access="private" type="String" />
+    <aura:attribute name="selectedOptionPills" access="private" type="Object[]" />
+    <aura:attribute name="comment" access="private" type="String" />
+    <aura:attribute name="errorMessage" access="private" type="Object[]" />
+    
+    <aura:attribute name="showModal" access="private" type="Boolean" />
+    <aura:attribute name="showClose" access="private" type="Boolean" />
+    <aura:attribute name="title" access="private" type="String" />
+    <aura:attribute name="variant" access="private" type="String" />
+    <aura:attribute name="content" access="private" type="String" />
+    <aura:attribute name="primaryButtonLabel" access="private" type="String" />
+    <aura:attribute name="secondaryButtonLabel" access="private" type="String" />
+    
+    <c:strike_modal aura:id="messageModal" title="{!v.title}" variant="error" primaryButtonLabel="{!v.primaryButtonLabel}" secondaryButtonLabel="{!v.secondaryButtonLabel}" showHeader="true" showFooter="true" showClose="{!v.showClose}" showModal="{!v.showModal}">
+    	<p>{!v.content}</p>
+	</c:strike_modal>
+
+    <aura:if isTrue="{!v.editMode == 1}">
+        <lightning:button aura:id="add" label="Add" variant="neutral" iconName="utility:add" iconPosition="left" onclick="{!c.showToggle}" />
+        <aura:set attribute="else">
+            <button class="slds-button slds-button_icon slds-button_icon-small slds-button_icon" title="Edit" onclick="{!c.showToggle}">
+                <lightning:icon aura:id="edit" variant="default" iconName="utility:edit" size="xx-small" />
+            </button>
+        </aura:set>
+    </aura:if>
     
     <div class="slds-popover slds-nubbin_left-top toggle add-comment" role="tooltip" aura:id="addComment">
-      <button class="slds-button slds-button_icon slds-button_icon-small slds-float_right slds-popover__close slds-button_icon" title="Close dialog"  onclick="{!c.hideToggle}">
-        	<lightning:icon iconName="utility:close" size="xx-small" variant="default"/>
-      </button>
-      <div class="slds-popover__body">
-        <div class="slds-media slds-m-bottom--small slds-media--center">
-               <div class="slds-media__body">
-                   {!v.body}
-                   <c:strike_multiSelectPicklist aura:id="tag" value="{!v.selectedTags}" placeholder="タグ" label="">
-                       <!--<aura:iteration items="{!v.tags}" var="option">
-                           <c:strike_option label="{!option.Name}" value="{!option.Id}"/>
-                       </aura:iteration>-->
-                   </c:strike_multiSelectPicklist>
-                   <lightning:textArea placeholder="コメント" variant="standard" value="{!v.comment}" />
-               </div>
-           </div>
-           <div class="slds-media slds-m-bottom--small slds-media--center">
-               <lightning:button label="保存" variant="brand" onclick="{!c.save}" />
-               <lightning:button label="キャンセル" variant="neutral" onclick="{!c.cancel}" />
-           </div>
-      </div>
+        <button class="slds-button slds-button_icon slds-button_icon-small slds-float_right slds-popover__close slds-button_icon" title="Close dialog"  onclick="{!c.hideToggle}">
+            <lightning:icon iconName="utility:close" size="xx-small" variant="default"/>
+        </button>
+        <div class="slds-popover__body">
+            <div class="slds-media slds-m-bottom--small slds-media--center">
+                <div class="slds-media__body">
+                    <div aura:id="divPicklist">
+                        <c:tmTagPicklist aura:id="tagPicklist" value="{!v.value}" selectedOptionPills="{!v.selectedOptionPills}" />
+                    </div>
+                    <span class="slds-text-color_error">{!v.errorMessage[0].tag_error}</span>
+                    <lightning:textArea placeholder="コメント" variant="standard" value="{!v.comment}" />
+                    <span class="slds-text-color_error">{!v.errorMessage[0].comment_error}</span>
+                </div>
+            </div>
+            <div class="slds-media slds-m-bottom--small slds-media--center">
+                <lightning:button label="保存" variant="brand" onclick="{!c.saveItem}" />
+                <aura:if isTrue="{!v.editMode == 2}">
+                    <lightning:button label="削除" variant="destructive" onclick="{!c.confirmDeleteItem}" />
+                </aura:if>
+                <lightning:button label="キャンセル" variant="neutral" onclick="{!c.cancel}" />
+            </div>
+        </div>
     </div>
 </aura:component>

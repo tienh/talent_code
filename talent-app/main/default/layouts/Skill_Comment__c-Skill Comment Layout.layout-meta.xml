@@ -38,6 +38,10 @@
                 <behavior>Edit</behavior>
                 <field>Create_By__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Last_Modified_When_Disp__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -77,7 +81,7 @@
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
-        <relatedList>Comment_Tag__c.Skill_Comment_ID__c</relatedList>
+        <relatedList>Comment_Tag__c.Comment_ID__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>

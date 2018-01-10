@@ -39,6 +39,12 @@ public class TMRSS {
         return TMSkill.fetchSkill();
     }
     
+    /* Get list all Skill level  */
+    @AuraEnabled
+    public static List<Skill_Level__c> fetchSkillLevel() {
+        return TMSkill.fetchSkillLevel();
+    }
+    
     /* Count number of indivisual Skills */
     @AuraEnabled
     public static integer countSkill(Id employeeId) {
@@ -63,10 +69,11 @@ public class TMRSS {
     @AuraEnabled
     public static List<Object> fetchSkill(Id employeeId, Id typeId) {
         String query = '';
-        query += 'SELECT Employee__r.Name, Id, Name, ' +
+        query += 'SELECT Employee__r.Name, Id, Name, Skill__c, Skill_Level__c, ' +
             	'Skill__r.Name, Skill__r.Skill_Type__r.Name, ' +
             	'Skill__r.Skill_Type__r.Order__c, ' +
-            	'Skill_Level__r.Name, Skill_Level__r.Skill_Num__c ' +
+            	'Skill_Level__r.Name, Skill_Level__r.Skill_Num__c, ' +
+            	'Type_Name_Disp__c, Skill_Name_Disp__c, Skill_Label_Ref__c, Skill_Value_Ref__c ' +
             'FROM Employee_Skill__c ' +
             'WHERE Employee__c = :employeeId ' +
             	'AND Skill__r.Skill_Type__c = :typeId';
@@ -81,13 +88,17 @@ public class TMRSS {
     @AuraEnabled
     public static List<Object> fetchProjectSkill(Id employeeId, Id projectId, Id typeId) {
         String query = '';
-        query += 'SELECT Id, Skill_Level__r.Skill_Num__c, ' +
+        query += 'SELECT Employee__r.Name, Id, ' +
+            	'Employee_Project__c, Employee_Project__r.Project__c, ' +
+            	'Employee_Skill__r.Skill__c, Skill_Level__c, ' +
+            	'Skill_Level__r.Skill_Num__c, ' +
             	'Employee_Project__r.Project__r.Name, ' +
             	'Employee_Skill__r.Skill__r.Name, ' +
             	'Employee_Skill__r.Skill__r.Skill_Type__r.Name, ' +
             	'Employee_Skill__r.Skill__r.Skill_Type__r.Order__c, ' +           
             	'Employee_Skill__r.Skill_Level__r.Name, ' +
-            	'Employee_Skill__r.Skill_Level__r.Skill_Num__c ' +
+            	'Employee_Skill__r.Skill_Level__r.Skill_Num__c, ' +
+            	'Type_Name_Disp__c, Skill_Name_Disp__c, Skill_Label_Ref__c, Skill_Value_Ref__c ' +
             'FROM Project_Skill__c ' +
             'WHERE Employee_Project__c = :projectId ' +
             	'AND Employee_Skill__r.Skill__r.Skill_Type__c = :typeId';

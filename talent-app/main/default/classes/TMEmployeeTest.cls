@@ -6,7 +6,7 @@ public class TMEmployeeTest {
         try {
             Employee__c e = new Employee__c(Name='MTA',Job__c='Dev');
             insert e;
-            TMEmployeePaged r = TMEmployee.findAll('', 0, 1000000, 8, 1);
+            TMEmployeePaged r = TMEmployee.findAll('', 8, 1);
         } catch (Exception e) {
             success = false;
         } finally {
@@ -19,7 +19,7 @@ public class TMEmployeeTest {
         try {
             Employee__c e = new Employee__c(Name='MST',Job__c='TEST');
             insert e;
-            TMEmployeePaged r = TMEmployee.findAll('Tran', null, null, 8, 1);
+            TMEmployeePaged r = TMEmployee.findAll('Tran', 8, 1);
         } catch (Exception e) {
             success = false;
         } finally {

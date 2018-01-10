@@ -1,0 +1,13 @@
+<aura:component controller="TMSaveComment">
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />
+    
+    <aura:attribute name="tags" type="List" />
+    <aura:attribute name="value" type="String" />
+    <aura:attribute name="selectedOptionPills" type="Object[]" />
+    
+	<c:strike_multiSelectPicklist placeholder="タグ" label="" value="{!v.value}" selectedOptionPills="{!v.selectedOptionPills}">
+        <aura:iteration items="{!v.tags}" var="option">
+            <c:strike_option label="{!option.Name}" value="{!option.Id}"/>
+        </aura:iteration>
+    </c:strike_multiSelectPicklist>
+</aura:component>

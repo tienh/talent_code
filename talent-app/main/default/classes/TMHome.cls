@@ -5,6 +5,7 @@ public class TMHome {
             SELECT ID, 
             	Name, 
             	Thumbnail__c,
+            	User__c,
             	Employee_Hiring__r.Permission__r.Name 
             FROM Employee__c 
             WHERE User__c = :UserInfo.getUserId() 
@@ -18,5 +19,13 @@ public class TMHome {
             'https://pnx-tm-dev-ed.my.salesforce.com',
             Site.getBaseInsecureUrl()
         };
+    }
+    
+    public static Employee__c getCurrentUser() {
+        return getUserInfo();
+    }
+    
+    public static Boolean isManager() {
+        return getUserInfo().Employee_Hiring__r.Permission__r.Name == 'Manager';
     }
 }

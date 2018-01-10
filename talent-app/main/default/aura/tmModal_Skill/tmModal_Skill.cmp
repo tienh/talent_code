@@ -1,0 +1,43 @@
+<aura:component controller="TMRSSController">
+    <aura:attribute name="recordId" type="String"/>
+    <aura:attribute name="projectId" type="String"/>
+    <aura:attribute name="projectName" type="String"/>
+    <aura:attribute name="typeName" type="String"/>
+    <aura:attribute name="cssClass" type="Object"/>
+    <aura:attribute name="relObject" type="Object"/>
+    <aura:attribute name="lstLevel" type="List"/>
+    
+    <aura:attribute name="isPJ" access="private" type="Boolean"/>
+    <aura:attribute name="skillId" access="private" type="String"/>
+    <aura:attribute name="skillName" access="private" type="String"/>
+    <aura:attribute name="skillLevel" access="private" type="String"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />
+    <aura:handler name="strike_evt_modalShow" event="c:strike_evt" action="{!c.handleModalShow}"/>
+    <aura:handler name="strike_evt_modalPrimaryButtonClicked" event="c:strike_evt" action="{!c.handlePrimaryButtonClick}"/>
+    
+    <div class="slds-cell-wrap">
+        <lightning:button aura:id="card" variant="neutral" 
+                          class="{!v.cssClass}"
+                          label="{!v.relObject.Skill_Name_Disp__c 
+                                 + '&nbsp;&nbsp;&nbsp;&nbsp;' + v.relObject.Skill_Level__r.Skill_Num__c}"
+                          value="{!v.skillId}"
+                          iconName="utility:crossfilter" iconPosition="left" onclick="{!c.showModal}" />
+    </div>
+    
+    <c:strike_modal aura:id="skillCRUD" title="Confirmation"
+                    primaryButtonLabel="保存" secondaryButtonLabel="Cancel"
+                    showHeader="true" showFooter="true" showClose="true" showModal="false">
+        <aura:if isTrue="{!v.projectId}">
+            <lightning:input label="Project Name" name="projectName" value="{!v.projectName}" disabled="true" />
+        </aura:if>
+        <lightning:input label="Skill Name" name="skillName" value="{!v.skillName}" disabled="true" />
+        <lightning:select aura:id="InputSelectSkill" name="Select Skill" 
+                          label="Skill Level" value="{!v.skillLevel}" variant="standard">
+            <aura:iteration items="{!v.lstLevel}" var="option">
+                <option value="{!option.Id}">{!option.Name}</option>
+            </aura:iteration>
+        </lightning:select>
+    </c:strike_modal>
+
+</aura:component>

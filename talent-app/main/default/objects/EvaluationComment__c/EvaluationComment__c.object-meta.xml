@@ -49,13 +49,13 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
     <enableReports>false</enableReports>
-    <enableSearch>false</enableSearch>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
     <label>Evaluation Comment</label>
     <nameField>
-        <label>E Name</label>
+        <label>Content</label>
         <type>Text</type>
     </nameField>
     <searchLayouts/>

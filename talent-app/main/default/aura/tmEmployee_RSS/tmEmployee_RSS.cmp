@@ -1,13 +1,25 @@
-<aura:component controller="TMRSS" implements="flexipage:availableForRecordHome,forceCommunity:availableForAllPageTypes,force:hasRecordId" access="global" >
-    <aura:handler name="init" value="{!this}" action="{!c.init}" />
+<aura:component controller="TMRSSController" implements="flexipage:availableForRecordHome,forceCommunity:availableForAllPageTypes,force:hasRecordId" access="global" >
+
     <aura:attribute name="recordId" type="String"/>
     <aura:attribute name="favRate" type="String"/>
     <aura:attribute name="fromDate" type="String" />
     <aura:attribute name="toDate" type="String" />
     <aura:attribute name="counter" type="Integer" />
     <aura:attribute name="rstSkillType" type="List" />
+    <aura:attribute name="rstSkillLevel" type="List" />
     <aura:attribute name="rstProject" type="List" />
+    <aura:attribute name="rstEmpSkills" type="List" />
+    <aura:attribute name="rstPJSkills" type="List" />
+    <aura:attribute name="Spinner" type="boolean" default="false"/>
+
+    <!--<aura:handler event="aura:waiting" action="{!c.showSpinner}"/>
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}"/>-->
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />
     
+    <aura:if isTrue="{!v.Spinner}">
+        <lightning:spinner size="medium" variant="brand" alternativeText="Loading..." />
+    </aura:if>
+
     <!-- SEARCH -->
     <div class="slds-grid slds-p-horizontal_small slds-m-bottom--large slds-wrap">
         <div class="slds-col slds-size--1-of-1 slds-medium-size--1-of-12 slds-large-size--1-of-12">評価期間</div>
@@ -40,14 +52,15 @@
             </aura:iteration>
         </div>
         <div class="slds-grid slds-p-horizontal_small slds-m-bottom_large slds-wrap">
-            <aura:iteration items="{!v.rstSkillType}" var="type" indexVar="index">
+            <aura:iteration items="{!v.rstEmpSkills}" var="obj" indexVar="index">
                 <div class="slds-col slds-size--1-of-1 slds-medium-size--2-of-6 slds-large-size--1-of-5">
-                    <c:tmEmployee_RSS_Skill recordId="{!v.recordId}" typeId="{#type.Id}" typeOrder="{#type.Order__c}" />
+                    <c:tmEmployee_RSS_Skill recordId="{!v.recordId}" 
+                                            typeId="{#obj.key.Id}" typeName="{#obj.key.Name}" typeOrder="{#obj.key.Order__c}" 
+                                            result="{!obj.value}" lstLevel="{!v.rstSkillLevel}"/>
                 </div>
             </aura:iteration>
             <div class="slds-col slds-size--1-of-1 slds-medium-size--1-of-4 slds-large-size--1-of-8 div_inline">
-                <img class="img_inline" src="{! '/tm/servlet/servlet.FileDownload?file=' + '0157F000000lgph'}" 
-                     width="40" alt="Heart" border="0" />
+                <img class="img_inline" src="{! $Resource.heart }" width="40" alt="Heart" border="0" />
                 <div class="text_inline">{!v.favRate}</div>
             </div>
         </div>
@@ -55,22 +68,25 @@
     <!-- / SKILL REGION -->
     
     <!-- PROJECT REGION -->
-    <aura:if isTrue="{!v.rstProject.length > 0}">
+    <aura:if isTrue="{!v.rstPJSkills.length > 0}">
         <div class="slds-grid slds-p-horizontal_small slds-m-bottom_medium slds-wrap">
                 <div class="slds-col slds-size--1-of-1 slds-medium-size--1-of-1 slds-large-size--1-of-1">
                     <span><c:strike_badge label="所属チームリスト" theme="info" /></span>
                 </div>
         </div>
         
-        <aura:iteration items="{! v.rstProject }" var="project">
+        <aura:iteration items="{! v.rstPJSkills }" var="objPJ">
             <div class="slds-grid slds-p-horizontal_small slds-m-bottom_x-small slds-border_top 
                         slds-p-top_xx-small slds-p-bottom_xx-small  slds-wrap">
                 <div class="slds-col slds-size--1-of-1 slds-medium-size--1-of-4 slds-large-size--1-of-8">
-                    <span>{#project.Project__r.Name}</span>
+                    <span>{#objPJ.key.Project__r.Name}</span>
                 </div>
-                <aura:iteration items="{!v.rstSkillType}" var="type" indexVar="index">
+                <aura:iteration items="{!objPJ.value}" var="obj" indexVar="index">
                     <div class="slds-col slds-size--1-of-1 slds-medium-size--2-of-6 slds-large-size--1-of-5">
-                        <c:tmEmployee_RSS_Skill recordId="{!v.recordId}" projectId="{#project.Id}" typeId="{#type.Id}" typeOrder="{#type.Order__c}" />
+                        <c:tmEmployee_RSS_Skill recordId="{!v.recordId}" 
+                                                projectId="{#objPJ.key.Id}" projectName="{#objPJ.key.Project__r.Name}" 
+                                                typeId="{#obj.key.Id}" typeName="{#obj.key.Name}" typeOrder="{#obj.key.Order__c}" 
+                                                result="{!obj.value}" lstLevel="{!v.rstSkillLevel}"/>
                     </div>
                 </aura:iteration>
             </div>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Last_Modified_When_Disp__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF( 
+ISBLANK(Last_Modified_When__c), 
+"", 
+TEXT(YEAR(DATEVALUE(Last_Modified_When__c))) + "/" + TEXT(MONTH(DATEVALUE(Last_Modified_When__c))) + "/" +TEXT(DAY(DATEVALUE(Last_Modified_When__c))) 
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>FML Last Modified When</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

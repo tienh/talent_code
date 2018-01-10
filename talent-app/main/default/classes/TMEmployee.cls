@@ -1,7 +1,7 @@
 global with sharing class TMEmployee {
     /* Get all data or filter display with pagging */
     @AuraEnabled
-    public static TMEmployeePaged findAll(String searchKey, Decimal minPrice, Decimal maxPrice, Decimal pageSize, Decimal pageNumber) {
+    public static TMEmployeePaged findAll(String searchKey, Decimal pageSize, Decimal pageNumber) {
 		Integer pSize = (Integer)pageSize;
         String key = '%' + searchKey + '%';
         Integer offset = ((Integer)pageNumber - 1) * pSize;
@@ -11,11 +11,12 @@ global with sharing class TMEmployee {
         r.total = [SELECT count() FROM Employee__c
                       WHERE (Name LIKE :key OR rank__c LIKE :key)
                       ];
-        r.employees = [SELECT Id, Name, user__c, User__r.Username,
-                       		job__c, job_title__c, rank__c, recent_achievement__c,
-                            thumbnail__c, Rank_Ref__c
+        r.employees = [SELECT Id, Name, user__c, User__r.Username, thumbnail__c, 
+                       		Employee_Hiring__r.Job_Category__c, Employee_Hiring__r.Position__c, 
+                       		Employee_Hiring__r.Rank__c, Employee_Hiring__r.Rank_Ref__c,
+                       		Employee_Hiring__r.Rank_Ref_CM__c
                       FROM Employee__c
-                      WHERE (Name LIKE :key OR rank__c LIKE :key)
+                      WHERE (Name LIKE :key OR Employee_Hiring__r.Rank__c LIKE :key)
                       ORDER BY user__c LIMIT :pSize OFFSET :offset];
         System.debug(r);
         return r;

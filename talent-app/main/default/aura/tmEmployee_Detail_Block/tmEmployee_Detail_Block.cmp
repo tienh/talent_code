@@ -1,0 +1,14 @@
+<aura:component >
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />
+    <aura:attribute name="key" type="String"/>
+    <aura:attribute name="value" type="String" />
+    
+    <div class="slds-has-flexi-truncate slds-p-horizontal_x-small full forcePageBlockItem forcePageBlockItemView" role="listitem">
+        <div class="slds-form-element slds-form-element_edit slds-grow slds-hint-parent slds-p-vertical_xxx-small override--slds-form-element">
+            <dl class="slds-list_horizontal slds-wrap">
+                <dt class="slds-item_label slds-text-color_weak slds-truncate">{! v.key }</dt>
+                <dd class="slds-item_detail slds-truncate custom-background">{! v.value }</dd>
+            </dl>
+        </div>
+    </div>
+</aura:component>

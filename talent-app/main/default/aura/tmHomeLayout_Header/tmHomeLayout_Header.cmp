@@ -1,6 +1,7 @@
 <aura:component controller="TMHome" implements="forceCommunity:availableForAllPageTypes" access="global">
     <aura:handler name="init" value="{!this}" action="{!c.init}" />
-    <aura:attribute name="userInfo" type="Object" />
+    
+    <aura:attribute name="userInfo" access="private" type="Object" />
     
     <div class="slds-page-header">
       <div class="slds-grid slds-align_absolute-center">
@@ -13,10 +14,7 @@
         <div class="slds-col slds-size--2-of-6 slds-medium-size--4-of-8">
             <a onclick="{!c.navigateToHome}">
                 <span class="slds-align_absolute-center">
-                    <img src="{! '/tm/servlet/servlet.FileDownload?file=' + '0157F000000lgI6' }" 
-                         width="100" alt="Banner" border="0" />
-                    <!--<img src="{! '/tm/sfc/servlet.shepherd/version/download/' + '0687F000000lVMk' }" 
-                     width="100" alt="Banner" border="0" />-->
+                    <img src="{! $Resource.pvt_banner_03 }" width="100" alt="Banner" border="0" />
                 </span>
                 <!--<span class="slds-text-align_center">
           			<h1 class="slds-page-header__title" title="HEADER">HEADER</h1>
@@ -25,7 +23,9 @@
         </div>
         <div class="slds-col slds-size--2-of-6 slds-medium-size--2-of-8">
             <div class="slds-float_right">
-                <lightning:button variant="brand" label="ログアウト" title="ログアウト" iconName="utility:logout" iconPosition="left" onclick="{!c.logout}" />
+                <button class="slds-button slds-button_icon slds-button_icon-small slds-button_icon" title="ログアウト" onclick="{!c.logout}">
+                    <lightning:icon variant="default" iconName="utility:logout" size="small" />
+                </button>
             </div>
             <div class="slds-float_right slds-m-right_medium">
                 <lightning:avatar src="{!v.userInfo.Thumbnail__c}" alternativeText="Avatar" variant="circle" size="medium" fallbackIconName="standard:avatar" />

@@ -7,7 +7,6 @@
                 component.set("v.empList", response.getReturnValue());
             }
         });
-        
         $A.enqueueAction(action);
     },
 })

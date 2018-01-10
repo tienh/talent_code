@@ -1,29 +1,33 @@
-<aura:component implements="forceCommunity:availableForAllPageTypes" access="global">
-     <aura:handler name="init" value="{!this}" action="{!c.init}" />
+<aura:component controller="TMPersonality" implements="forceCommunity:availableForAllPageTypes" access="global">
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />
+    
     <aura:attribute name="recordId" type="String"/>
-    <aura:attribute name="types" type="Object[]" />
-    <aura:attribute name="personalities" type="Object[]" />
-
+    <aura:attribute name="tabId" type="String"/>
+    
+    <aura:attribute name="resultPersonalityType" access="private" type="List" />
+    <aura:attribute name="resultPersonalityMethod" access="private" type="List" />
+    
     <table class="slds-table slds-table--bordered">
         <thead>
             <tr>
-                <td class="personality-name"></td>
-                <aura:iteration items="{! v.types }" var="type">
-                    <td>
+                <td></td>
+                <aura:iteration items="{!v.resultPersonalityMethod}" var="personalityMethod">
+                    <td class="personality-method">
                         <h2 class="slds-text-align_center">
-                            <lightning:icon iconName="{! type.icon }" size="small"/>
-                            &nbsp; {! type.name }
+                            <lightning:icon iconName="{!personalityMethod.Icon__c}" size="small"/>
+                            &nbsp; {!personalityMethod.Name}
                         </h2>
                     </td>
                 </aura:iteration>
             </tr>
         </thead>
         <tbody>
-            <aura:iteration items="{! v.personalities }" var="personality">
+            <aura:iteration items="{!v.resultPersonalityType}" var="personalityType">
                 <tr>
-                    <td class="personality-name" onclick="{! c.toggle }">{! personality.name }</td>
-                    <aura:iteration items="{! personality.children }" var="child">
-                        <td>
+                    <td>{!personalityType.Name}</td>
+                    <aura:iteration items="{!v.resultPersonalityMethod}" var="personalityMethod">
+                        <td class="slds-align-top">
+                            <c:tmCommentBlock recordId="{#v.recordId}" tabId="{#v.tabId}" typeId="{#personalityType.Id}" modeId="{#personalityMethod.Id}" />
                         </td>
                     </aura:iteration>
                 </tr>

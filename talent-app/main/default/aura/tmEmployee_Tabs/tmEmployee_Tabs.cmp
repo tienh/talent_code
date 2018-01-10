@@ -1,73 +1,49 @@
-<aura:component controller="TMEmployee"
-                implements="forceCommunity:availableForAllPageTypes,force:hasRecordId" access="global">
-	
-    <aura:attribute name="recordId" type="String"/>
-    <aura:attribute name="employee" type="Object" />
+<aura:component controller="TMEmployee" implements="forceCommunity:availableForAllPageTypes,force:hasRecordId" access="global">
+
     <aura:handler name="init" value="{!this}" action="{!c.init}" />
     
-    <div class="slds-tabs_default">
-		<!-- MAIN TAB -->
-        <ul class="slds-tabs_default__nav" role="tablist">
-            <li aura:id="tabpage" class="slds-tabs_default__item slds-is-active" title="RSS" role="presentation" onclick="{!c.changeTab}">
-                <a class="slds-tabs_default__link" href="javascript:void(0);" role="tab" tabindex="0" aria-selected="true" aria-controls="tab-default-1" id="tab-default-1__item">
-                    &nbsp;&nbsp;&nbsp;&nbsp;RSS&nbsp;&nbsp;&nbsp;&nbsp;
-                </a>
-            </li>
-            <li aura:id="tabpage" class="slds-tabs_default__item" title="Timeline" role="presentation" onclick="{!c.changeTab}">
-                <a class="slds-tabs_default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-2" id="tab-default-2__item">
-                    Timeline
-                </a>
-            </li>
-            <li aura:id="tabpage" class="slds-tabs_default__item" title="Profile" role="presentation" onclick="{!c.changeTab}">
-                <a class="slds-tabs_default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-3" id="tab-default-3__item">
-                    Profile
-                </a>
-            </li>
-        </ul>
-        <!-- / MAIN TAB -->
-        <div aura:id="tab-default-1" class="slds-tabs_default__content slds-show" role="tabpanel" aria-labelledby="tab-default-1__item">
+    <aura:attribute name="employee" type="Object" />
+    <aura:attribute name="favRate" type="Integer" />
+    <aura:attribute name="tabId" type="String"/>
+    
+    <lightning:tabset variant="default">
+        <lightning:tab title="RSS" id="item-1">
+            <aura:set attribute="label">&nbsp;&nbsp;&nbsp;&nbsp;RSS&nbsp;&nbsp;&nbsp;&nbsp;</aura:set>
             <!-- RSS CONTENT -->
-            <c:tmEmployee_RSS recordId="{!v.recordId}" favRate="{!v.employee.Employee_Hiring__r.Favorite__c}" />
+            <c:tmEmployee_RSS recordId="{!v.recordId}" favRate="{!v.favRate}" />
             <!-- / RSS CONTENT -->
-        </div>
-        <div aura:id="tab-default-2" class="slds-tabs_default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-2__item">
+        </lightning:tab>
+        <lightning:tab title="Timeline" id="item-2">
+            <aura:set attribute="label">Timeline</aura:set>
             <!-- TIMELINE CONTENT -->
-        	<div class="slds-tabs_scoped">
-                <!-- SUB TAB -->
-                <ul class="slds-tabs_scoped__nav" role="tablist">
-                    <li aura:id="tabsub" class="slds-tabs_scoped__item slds-is-active" title="Skill" role="presentation" onclick="{!c.changeTab}">
-                        <a class="slds-tabs_scoped__link" href="javascript:void(0);" role="tab" tabindex="0" aria-selected="true" aria-controls="tab-scoped-1" id="tab-scoped-1__item">
-                            Skill
-                        </a>
-                    </li>
-                    <li aura:id="tabsub" class="slds-tabs_scoped__item" title="Personality" role="presentation" onclick="{!c.changeTab}">
-                        <a class="slds-tabs_scoped__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-scoped-2" id="tab-scoped-2__item">
-                            Pesonality
-                        </a>
-                    </li>
-                    <li aura:id="tabsub" class="slds-tabs_scoped__item" title="Evaluation" role="presentation" onclick="{!c.changeTab}">
-                        <a class="slds-tabs_scoped__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-scoped-3" id="tab-scoped-3__item">
-                            Evaluation
-                        </a>
-                    </li>
-                </ul>
-                <!-- / SUB TAB -->
-                <div aura:id="tab-scoped-1" class="slds-tabs_scoped__content slds-show" role="tabpanel" aria-labelledby="tab-scoped-1__item">
-                	<c:tmCollapsibleTable recordId="{!v.recordId}" />
-                </div>
-                <div aura:id="tab-scoped-2" class="slds-tabs_scoped__content slds-hide" role="tabpanel" aria-labelledby="tab-scoped-2__item">
-                    <c:tmPersonalityTable recordId="{!v.recordId}" />
-                </div>
-                <div aura:id="tab-scoped-3" class="slds-tabs_scoped__content slds-hide" role="tabpanel" aria-labelledby="tab-scoped-3__item">
-					<c:tmEvaluationTable recordId="{!v.recordId}" />
-				</div>
-            </div>
+            <lightning:tabset variant="scoped">
+                <lightning:tab title="Skill" id="sub-item-1">
+                    <aura:set attribute="label">&nbsp;&nbsp;&nbsp;&nbsp;Skill&nbsp;&nbsp;&nbsp;&nbsp;</aura:set>
+                    <!-- SKILL CONTENT -->
+                    <c:tmSkillTable recordId="{!v.recordId}" tabId="tab-scoped-1" />
+                    <!-- / SKILL CONTENT -->
+                </lightning:tab>
+                <lightning:tab title="Pesonality" id="sub-item-2">
+                    <aura:set attribute="label">Pesonality</aura:set>
+                    <!-- PERSONALITY CONTENT -->
+                    <c:tmPersonalityTable recordId="{!v.recordId}" tabId="tab-scoped-2" />
+                    <!-- / PERSONALITY CONTENT -->
+                </lightning:tab>
+                <lightning:tab title="Evaluation" id="sub-item-3" onactive="{!c.evaluate}">
+                    <aura:set attribute="label">Evaluation</aura:set>
+                    <!-- EVALUATION CONTENT -->
+                   <c:tmEvaluationTable aura:id="evaluationTab" recordId="{!v.recordId}" tabId="tab-scoped-3" />
+                    <!-- / EVALUATION CONTENT -->
+                </lightning:tab>
+            </lightning:tabset>
             <!-- / TIMELINE CONTENT -->
-        </div>
-        <div aura:id="tab-default-3" class="slds-tabs_default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-3__item">
+        </lightning:tab>
+        <lightning:tab title="Profile" id="item-3">
+            <aura:set attribute="label">Profile</aura:set>
             <!-- PROFILE CONTENT -->
             <c:tmEmployee_Detail employee="{!v.employee}"/>
             <!-- / PROFILE CONTENT -->
-        </div>
-    </div>
+        </lightning:tab>
+    </lightning:tabset>
+    
 </aura:component>

@@ -55,7 +55,7 @@
     <externalSharingModel>ReadWrite</externalSharingModel>
     <label>Skill Type</label>
     <nameField>
-        <label>Type Name</label>
+        <label>Skill Type Name</label>
         <type>Text</type>
     </nameField>
     <searchLayouts/>
