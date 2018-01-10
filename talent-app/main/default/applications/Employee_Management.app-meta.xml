@@ -26,6 +26,7 @@
     <tab>Personality_Method__c</tab>
     <tab>Personality_Comment__c</tab>
     <tab>Personality_Comment_Tag__c</tab>
+    <tab>EvaluationComment__c</tab>
     <uiType>Lightning</uiType>
     <utilityBar>Employee_Management_UtilityBar</utilityBar>
 </CustomApplication>

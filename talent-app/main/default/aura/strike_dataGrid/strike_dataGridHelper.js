@@ -1,7 +1,7 @@
 /*
 Strike by Appiphony
 
-Version: 0.10.0
+Version: 1.0.0
 Website: http://www.lightningstrike.io
 GitHub: https://github.com/appiphony/Strike-Components
 License: BSD 3-Clause License
@@ -90,15 +90,20 @@ License: BSD 3-Clause License
 			formattedData.rows = formattedRows;
 			formattedData.columns = columns;
 			component.set('v.formattedData', formattedData);
-			helper.createRowComponents(component, event, helper);
+			component.set('v.showLoadMore', component.get('v.loadMoreAmount') <= formattedRows.length + 1);
+			helper.createRowComponents(component, event, helper, false);
 		}
 	},
-	createRowComponents: function(component,event,helper) {
+	createRowComponents: function(component, event, helper, isLoadMore) {
 		var howManyToLoad = component.get('v.loadMoreAmount'); //let this be a design attribute
 		var formattedData = component.get('v.formattedData');
 
 		var numberOfVisableRows = component.get('v.body.length');
 		var numberOfAllRows = component.get('v.data.rows.length');
+
+		if(numberOfVisableRows > numberOfAllRows) {
+			numberOfVisableRows = numberOfAllRows;
+		}
 
 		var body = [];
 		component.set('v.body', body);
@@ -106,10 +111,15 @@ License: BSD 3-Clause License
 		var rowsToCreate; 
 		if(numberOfAllRows > numberOfVisableRows + howManyToLoad){
 			rowsToCreate = numberOfVisableRows + howManyToLoad;
-		} else {
+			if(!isLoadMore) {
+				rowsToCreate = howManyToLoad;
+				component.set('v.showLoadMore', true);
+			}
+		} else if(numberOfAllRows - numberOfVisableRows <= howManyToLoad) {
 			rowsToCreate = numberOfAllRows;
 			component.set('v.showLoadMore', false);
 		}
+
 
 		var createRowCallback = function(newCmp, status, errorMessage){
 			if(status === 'SUCCESS'){
@@ -195,8 +205,7 @@ License: BSD 3-Clause License
 		component.set('v.currentSortColumn', selectedColumnName);
 	},
 	loadMore: function(component, event, helper) {
-		var formattedData = component.get('v.formattedData');
-		helper.createRowComponents(component, event, helper);
+		helper.createRowComponents(component, event, helper, true);
 	}
 })
 /*

@@ -1,7 +1,7 @@
 <aura:component implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes,force:hasRecordId" access="global" >
 	
-    <aura:registerEvent name="employeeSearchChange" type="c:tmEvt_Employee_SearchChange"/>
     <aura:attribute name="searchKey" type="String" />
+    <aura:registerEvent name="employeeSearchChange" type="c:tmEvt_Employee_SearchChange"/>
     
     <lightning:card >
         <aura:set attribute="title">

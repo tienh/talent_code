@@ -1,214 +1,44 @@
 <aura:component implements="flexipage:availableForRecordHome,forceCommunity:availableForAllPageTypes,force:hasRecordId" access="global" >
-    
+
     <aura:attribute name="recordId" type="String"/>
     <aura:attribute name="employee" type="Object" />
-    <aura:attribute name="emp" type="Object" />
+    <aura:attribute name="tBlock" type="List" />
+    
     <aura:handler name="init" value="{!this}" action="{!c.init}" />
     
-    <section class="record-home-details record-home-tab tabs__content active uiTab" aria-expanded="true" role="tabpanel" data-aura-class="uiTab">
-        <div class="forceCommunityRecordDetail" data-aura-class="forceCommunityRecordDetail">
-            <div class="full forcePageBlock forceRecordLayout" data-aura-class="forcePageBlock forceRecordLayout">
-                <div class="test-id__section slds-section  slds-is-open full forcePageBlockSection forcePageBlockSectionView" data-aura-class="forcePageBlockSection forcePageBlockSectionView">
-                    <div class="test-id__section-content slds-section__content section__content slds-p-top--none">
-                        <div class="slds-form " role="list">
-                            <!-- BLOCK 1 -->
-                            <div class="slds-p-vertical_xxx-small">
-                                <div class="slds-grid full forcePageBlockSectionRow" data-aura-class="forcePageBlockSectionRow">
-                                    <div class="slds-has-flexi-truncate slds-p-horizontal_x-small full forcePageBlockItem forcePageBlockItemView" role="listitem" data-aura-class="forcePageBlockItem forcePageBlockItemView">
-                                        <div class="slds-form-element slds-form-element_edit slds-grow slds-hint-parent slds-p-vertical_xxx-small override--slds-form-element">
-                                            <dl class="slds-list_horizontal slds-wrap">
-                                                <dt class="slds-item_label slds-text-color_weak slds-truncate">姓</dt>
-                                                <dd class="slds-item_detail slds-truncate custom-background">{! v.employee.Last_Name__c }</dd>
-                                            </dl>
-                                        </div>
-                                    </div>
-                                    <div class="slds-has-flexi-truncate slds-p-horizontal_x-small full forcePageBlockItem forcePageBlockItemView" role="listitem" data-aura-class="forcePageBlockItem forcePageBlockItemView">
-                                        <div class="slds-form-element slds-form-element_edit slds-grow slds-hint-parent slds-p-vertical_xxx-small override--slds-form-element">
-                                            <dl class="slds-list_horizontal slds-wrap">
-                                                <dt class="slds-item_label slds-text-color_weak slds-truncate">名</dt>
-                                                <dd class="slds-item_detail slds-truncate custom-background">{! v.employee.First_Name__c }</dd>
-                                            </dl>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="slds-grid full forcePageBlockSectionRow" data-aura-class="forcePageBlockSectionRow">
-                                    <div class="slds-has-flexi-truncate slds-p-horizontal_x-small full forcePageBlockItem forcePageBlockItemView" role="listitem" data-aura-class="forcePageBlockItem forcePageBlockItemView">
-                                        <div class="slds-form-element slds-form-element_edit slds-grow slds-hint-parent slds-p-vertical_xxx-small override--slds-form-element">
-                                            <dl class="slds-list_horizontal slds-wrap">
-                                                <dt class="slds-item_label slds-text-color_weak slds-truncate">姓（かな）</dt>
-                                                <dd class="slds-item_detail slds-truncate custom-background">{! v.employee.Last_Name_Kana__c }</dd>
-                                            </dl>
-                                        </div>
-                                    </div>
-                                    <div class="slds-has-flexi-truncate slds-p-horizontal_x-small full forcePageBlockItem forcePageBlockItemView" role="listitem" data-aura-class="forcePageBlockItem forcePageBlockItemView">
-                                        <div class="slds-form-element slds-form-element_edit slds-grow slds-hint-parent slds-p-vertical_xxx-small override--slds-form-element">
-                                            <dl class="slds-list_horizontal slds-wrap">
-                                                <dt class="slds-item_label slds-text-color_weak slds-truncate">名（かな）</dt>
-                                                <dd class="slds-item_detail slds-truncate custom-background">{! v.employee.First_Name_Kana__c }</dd>
-                                            </dl>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="slds-grid full forcePageBlockSectionRow" data-aura-class="forcePageBlockSectionRow">
-                                    <div class="slds-has-flexi-truncate slds-p-horizontal_x-small full forcePageBlockItem forcePageBlockItemView" role="listitem" data-aura-class="forcePageBlockItem forcePageBlockItemView">
-                                        <div class="slds-form-element slds-form-element_edit slds-grow slds-hint-parent slds-p-vertical_xxx-small override--slds-form-element">
-                                            <dl class="slds-list_horizontal slds-wrap">
-                                                <dt class="slds-item_label slds-text-color_weak slds-truncate">表示名</dt>
-                                                <dd class="slds-item_detail slds-truncate custom-background">{! v.employee.Name }</dd>
-                                            </dl>
-                                        </div>
-                                    </div>
-                                    <div class="slds-has-flexi-truncate slds-p-horizontal_x-small full forcePageBlockItem forcePageBlockItemView" role="listitem" data-aura-class="forcePageBlockItem forcePageBlockItemView">
-                                        <div class="slds-form-element slds-form-element_edit slds-grow slds-hint-parent slds-p-vertical_xxx-small override--slds-form-element">
-                                            <dl class="slds-list_horizontal slds-wrap">
-                                                <dt class="slds-item_label slds-text-color_weak slds-truncate">性別</dt>
-                                                <dd class="slds-item_detail slds-truncate custom-background">{! v.employee.Gender_Disp__c }</dd>
-                                            </dl>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="slds-grid full forcePageBlockSectionRow" data-aura-class="forcePageBlockSectionRow">
-                                    <div class="slds-has-flexi-truncate slds-p-horizontal_x-small full forcePageBlockItem forcePageBlockItemView" role="listitem" data-aura-class="forcePageBlockItem forcePageBlockItemView">
-                                        <div class="slds-form-element slds-form-element_edit slds-grow slds-hint-parent slds-p-vertical_xxx-small override--slds-form-element">
-                                            <dl class="slds-list_horizontal slds-wrap">
-                                                <dt class="slds-item_label slds-text-color_weak slds-truncate">生年月日</dt>
-                                                <dd class="slds-item_detail slds-truncate custom-background">{! v.employee.Birthday_Disp__c }</dd>
-                                            </dl>
-                                        </div>
-                                    </div>
-                                    <div class="slds-has-flexi-truncate slds-p-horizontal_x-small full forcePageBlockItem forcePageBlockItemView" role="listitem" data-aura-class="forcePageBlockItem forcePageBlockItemView">
-                                        <div class="slds-form-element slds-form-element_edit slds-grow slds-hint-parent slds-p-vertical_xxx-small override--slds-form-element">
-                                            <dl class="slds-list_horizontal slds-wrap">
-                                                <dt class="slds-item_label slds-text-color_weak slds-truncate">入社日</dt>
-                                                <dd class="slds-item_detail slds-truncate custom-background">{! v.employee.Employee_Hiring__r.Hire_Date_Disp__c }</dd>
-                                            </dl>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="slds-grid full forcePageBlockSectionRow" data-aura-class="forcePageBlockSectionRow">
-                                    <div class="slds-has-flexi-truncate slds-p-horizontal_x-small full forcePageBlockItem forcePageBlockItemView" role="listitem" data-aura-class="forcePageBlockItem forcePageBlockItemView">
-                                        <div class="slds-form-element slds-form-element_edit slds-grow slds-hint-parent slds-p-vertical_xxx-small override--slds-form-element">
-                                            <dl class="slds-list_horizontal slds-wrap">
-                                                <dt class="slds-item_label slds-text-color_weak slds-truncate">職種</dt>
-                                                <dd class="slds-item_detail slds-truncate custom-background">{! v.employee.Employee_Hiring__r.Job_Category__c }</dd>
-                                            </dl>
-                                        </div>
-                                    </div>
-                                    <div class="slds-has-flexi-truncate slds-p-horizontal_x-small full forcePageBlockItem forcePageBlockItemView" role="listitem" data-aura-class="forcePageBlockItem forcePageBlockItemView">
-                                        <div class="slds-form-element slds-form-element_edit slds-grow slds-hint-parent slds-p-vertical_xxx-small override--slds-form-element">
-                                            <dl class="slds-list_horizontal slds-wrap">
-                                                <dt class="slds-item_label slds-text-color_weak slds-truncate">メールアドレス</dt>
-                                                <dd class="slds-item_detail slds-truncate custom-background">{! v.employee.Employee_Hiring__r.Email__c }</dd>
-                                            </dl>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="slds-grid full forcePageBlockSectionRow" data-aura-class="forcePageBlockSectionRow">
-                                    <div class="slds-has-flexi-truncate slds-p-horizontal_x-small full forcePageBlockItem forcePageBlockItemView" role="listitem" data-aura-class="forcePageBlockItem forcePageBlockItemView">
-                                        <div class="slds-form-element slds-form-element_edit slds-grow slds-hint-parent slds-p-vertical_xxx-small override--slds-form-element">
-                                            <dl class="slds-list_horizontal slds-wrap">
-                                                <dt class="slds-item_label slds-text-color_weak slds-truncate">職位</dt>
-                                                <dd class="slds-item_detail slds-truncate custom-background">{! v.employee.Employee_Hiring__r.Position__c }</dd>
-                                            </dl>
-                                        </div>
-                                    </div>
-                                    <div class="slds-has-flexi-truncate slds-p-horizontal_x-small full forcePageBlockItem forcePageBlockItemView" role="listitem" data-aura-class="forcePageBlockItem forcePageBlockItemView">
-                                        <div class="slds-form-element slds-form-element_edit slds-grow slds-hint-parent slds-p-vertical_xxx-small override--slds-form-element">
-                                            <dl class="slds-list_horizontal slds-wrap">
-                                                <dt class="slds-item_label slds-text-color_weak slds-truncate">在職状況</dt>
-                                                <dd class="slds-item_detail slds-truncate custom-background">{! v.employee.Employee_Hiring__r.Status__c }</dd>
-                                            </dl>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="slds-grid full forcePageBlockSectionRow" data-aura-class="forcePageBlockSectionRow">
-                                    <div class="slds-has-flexi-truncate slds-p-horizontal_x-small full forcePageBlockItem forcePageBlockItemView" role="listitem" data-aura-class="forcePageBlockItem forcePageBlockItemView">
-                                        <div class="slds-form-element slds-form-element_edit slds-grow slds-hint-parent slds-p-vertical_xxx-small override--slds-form-element">
-                                            <dl class="slds-list_horizontal slds-wrap">
-                                                <dt class="slds-item_label slds-text-color_weak slds-truncate">部署</dt>
-                                                <dd class="slds-item_detail slds-truncate custom-background">{! v.employee.Employee_Hiring__r.Department__c }</dd>
-                                            </dl>
-                                        </div>
-                                    </div>
-                                    <div class="slds-has-flexi-truncate slds-p-horizontal_x-small full forcePageBlockItem forcePageBlockItemView" role="listitem" data-aura-class="forcePageBlockItem forcePageBlockItemView">
-                                        <div class="slds-form-element slds-form-element_edit slds-grow slds-hint-parent slds-p-vertical_xxx-small override--slds-form-element">
-                                            <dl class="slds-list_horizontal slds-wrap">
-                                                <dt class="slds-item_label slds-text-color_weak slds-truncate">勤務地</dt>
-                                                <dd class="slds-item_detail slds-truncate custom-background">{! v.employee.Employee_Hiring__r.Work_Location__c }</dd>
-                                            </dl>
-                                        </div>
-                                    </div>
-                                </div>
+    <section class="record-home-details record-home-tab tabs__content active uiTab" 
+             aria-expanded="true" role="tabpanel">
+        <div class="full forcePageBlock forceRecordLayout">
+            <div class="slds-form" role="list">
+                <!-- BLOCK 1 -->
+                <div class="slds-p-vertical_xxx-small">
+                    <aura:iteration items="{!v.tBlock}" var="lst" indexVar="index">
+                        <div class="slds-grid full forcePageBlockSectionRow">
+                            <aura:iteration items="{!lst.obj}" var="item">
+                                <c:tmEmployee_Detail_Block key="{!item.key}" value="{!item.value}" />
+                            </aura:iteration>
+                        </div>
+                    </aura:iteration>
+                </div>
+                <!-- / BLOCK 1 -->
+                <!-- BLOCK 2 -->
+                <div class="slds-p-vertical_xxx-small">
+                    <div class="slds-grid full forcePageBlockSectionRow">
+                        <div class="slds-has-flexi-truncate slds-p-horizontal_x-small full forcePageBlockItem forcePageBlockItemView" role="listitem">
+                            <div class="slds-form-element slds-form-element_edit slds-grow slds-hint-parent slds-p-vertical_xxx-small override--slds-form-element">
+                                <textarea class="slds-textarea" rows="4" placeholder="メモ"></textarea>
                             </div>
-                            <!-- / BLOCK 1 -->
-                            <!-- BLOCK 2 -->
-                            <div class="slds-p-vertical_xxx-small">
-                                <div class="slds-grid full forcePageBlockSectionRow" data-aura-class="forcePageBlockSectionRow">
-                                    <div class="slds-has-flexi-truncate slds-p-horizontal_x-small full forcePageBlockItem forcePageBlockItemView" role="listitem" data-aura-class="forcePageBlockItem forcePageBlockItemView">
-                                        <div class="slds-form-element slds-form-element_edit slds-grow slds-hint-parent slds-p-vertical_xxx-small override--slds-form-element">
-                                            <dl class="slds-list_horizontal slds-wrap">
-                                                <dt class="slds-item_label slds-text-color_weak slds-truncate">現住所</dt>
-                                                <dd class="slds-item_detail slds-truncate custom-background">{! v.employee.Employee_Hiring__r.Current_Address__c }</dd>
-                                            </dl>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="slds-grid full forcePageBlockSectionRow" data-aura-class="forcePageBlockSectionRow">
-                                    <div class="slds-has-flexi-truncate slds-p-horizontal_x-small full forcePageBlockItem forcePageBlockItemView" role="listitem" data-aura-class="forcePageBlockItem forcePageBlockItemView">
-                                        <div class="slds-form-element slds-form-element_edit slds-grow slds-hint-parent slds-p-vertical_xxx-small override--slds-form-element">
-                                            <dl class="slds-list_horizontal slds-wrap">
-                                                <dt class="slds-item_label slds-text-color_weak slds-truncate">TEL</dt>
-                                                <dd class="slds-item_detail slds-truncate custom-background">{! v.employee.Employee_Hiring__r.Tel__c }</dd>
-                                            </dl>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="slds-grid full forcePageBlockSectionRow" data-aura-class="forcePageBlockSectionRow">
-                                    <div class="slds-has-flexi-truncate slds-p-horizontal_x-small full forcePageBlockItem forcePageBlockItemView" role="listitem" data-aura-class="forcePageBlockItem forcePageBlockItemView">
-                                        <div class="slds-form-element slds-form-element_edit slds-grow slds-hint-parent slds-p-vertical_xxx-small override--slds-form-element">
-                                            <dl class="slds-list_horizontal slds-wrap">
-                                                <dt class="slds-item_label slds-text-color_weak slds-truncate">緊急連絡先</dt>
-                                                <dd class="slds-item_detail slds-truncate custom-background">{! v.emp.emergency_contact }</dd>
-                                            </dl>
-                                        </div>
-                                    </div>
-                                </div>
+                        </div>
+                        <div class="slds-has-flexi-truncate slds-p-horizontal_x-small full forcePageBlockItem forcePageBlockItemView" role="listitem">
+                            <div class="slds-form-element slds-form-element_edit slds-grow slds-hint-parent slds-p-vertical_xxx-small override--slds-form-element">
+                                <button class="slds-button　slds-button_brand">添付ファイル<br /><br />履歴書.pdf<br />&nbsp;</button>&nbsp;
+                                <button class="slds-button　slds-button_brand">添付ファイル<br /><br />FFS.pdf<br />&nbsp;</button>
                             </div>
-                            <div class="slds-p-vertical_xxx-small">
-                                <div class="slds-grid full forcePageBlockSectionRow" data-aura-class="forcePageBlockSectionRow">
-                                    <div class="slds-has-flexi-truncate slds-p-horizontal_x-small full forcePageBlockItem forcePageBlockItemView" role="listitem" data-aura-class="forcePageBlockItem forcePageBlockItemView">
-                                        <div class="slds-form-element slds-form-element_edit slds-grow slds-hint-parent slds-p-vertical_xxx-small override--slds-form-element">
-                                            <dl class="slds-list_horizontal slds-wrap">
-                                                <dt class="slds-item_label slds-text-color_weak slds-truncate">FFS</dt>
-                                                <dd class="slds-item_detail slds-truncate custom-background">{! v.employee.Employee_Hiring__r.ffs__c }</dd>
-                                            </dl>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- / BLOCK 2 -->
-                            <!-- BLOCK 3 -->
-                            <div class="slds-p-vertical_xxx-small">
-                                <div class="slds-grid full forcePageBlockSectionRow" data-aura-class="forcePageBlockSectionRow">
-                                    <div class="slds-has-flexi-truncate slds-p-horizontal_x-small full forcePageBlockItem forcePageBlockItemView" role="listitem" data-aura-class="forcePageBlockItem forcePageBlockItemView">
-                                        <div class="slds-form-element slds-form-element_edit slds-grow slds-hint-parent slds-p-vertical_xxx-small override--slds-form-element">
-                                            <textarea class="slds-textarea" rows="4" placeholder="メモ"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="slds-has-flexi-truncate slds-p-horizontal_x-small full forcePageBlockItem forcePageBlockItemView" role="listitem" data-aura-class="forcePageBlockItem forcePageBlockItemView">
-                                        <div class="slds-form-element slds-form-element_edit slds-grow slds-hint-parent slds-p-vertical_xxx-small override--slds-form-element">
-                                            <button class="slds-button　slds-button_brand">添付ファイル<br /><br />履歴書.pdf<br />&nbsp;</button>&nbsp;
-                                            <button class="slds-button　slds-button_brand">添付ファイル<br /><br />FFS.pdf<br />&nbsp;</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- / BLOCK 3 -->
                         </div>
                     </div>
                 </div>
+                <!-- / BLOCK 2 -->
             </div>
         </div>
-    </section>
-                                
+    </section>                        
 </aura:component>

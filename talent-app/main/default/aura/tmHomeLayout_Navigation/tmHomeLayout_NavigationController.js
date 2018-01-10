@@ -2,23 +2,28 @@
     init: function(cmp, evt) {
         cmp.set("v.items", [
             {
-               	text: "Menu 1",
-                link: "http://www.google.com"
+               	text: "Chat Group",
+                link: "/chat-group"
             },
             {
                 text: "Menu 2",
-                link: "http://www.google.com"
+                link: "#"
             },
             {
                 text: "Menu 3",
-                link: "http://www.google.com"
+                link: "#"
             }
 		]);
     },
     
-	handleClick : function(component, event, helper)
+    handlePage : function(component, event, helper)
     {
-        var menu = component.find("menulist");
-        $A.util.toggleClass(menu, "slds-is-open"); 
-    }
+        //debugger; // the JS debugger will pause here
+        var url = event.getSource().get("v.value");
+        if (url != "#") {
+            var urlEvent = $A.get("e.force:navigateToURL");
+            urlEvent.setParams({"url": url});
+            urlEvent.fire();
+        }
+    },
 })

@@ -1,9 +1,11 @@
 <aura:component controller="TMPersonality" implements="forceCommunity:availableForAllPageTypes" access="global">
     <aura:handler name="init" value="{!this}" action="{!c.init}" />
+    
     <aura:attribute name="recordId" type="String"/>
     <aura:attribute name="tabId" type="String"/>
-    <aura:attribute name="resultPersonalityType" type="List" />
-    <aura:attribute name="resultPersonalityMethod" type="List" />
+    
+    <aura:attribute name="resultPersonalityType" access="private" type="List" />
+    <aura:attribute name="resultPersonalityMethod" access="private" type="List" />
     
     <table class="slds-table slds-table--bordered">
         <thead>
@@ -25,7 +27,7 @@
                     <td>{!personalityType.Name}</td>
                     <aura:iteration items="{!v.resultPersonalityMethod}" var="personalityMethod">
                         <td class="slds-align-top">
-                            <c:tmCommentBlock recordId="{!v.recordId}" tabId="{!v.tabId}" typeId="{#personalityType.Id}" modeId="{#personalityMethod.Id}" />
+                            <c:tmCommentBlock recordId="{#v.recordId}" tabId="{#v.tabId}" typeId="{#personalityType.Id}" modeId="{#personalityMethod.Id}" />
                         </td>
                     </aura:iteration>
                 </tr>

@@ -1,24 +1,31 @@
-<aura:component controller="TMSearchComment" implements="forceCommunity:availableForAllPageTypes" access="global">
+<aura:component controller="TMEvaluationComment" implements="forceCommunity:availableForAllPageTypes" access="global">
     <aura:handler name="init" value="{!this}" action="{!c.init}" />
+    <aura:handler name="toggleSpinner" event="c:tmToggleSpinnerEvt" action="{!c.toggleSpinner}" />
+    
+    <aura:method name="evaluateMethod" action="{!c.evaluate}" />
+    
     <aura:attribute name="recordId" type="String"/>
     <aura:attribute name="tabId" type="String"/>
-    <aura:attribute name="comments" type="Object[]" />
-    <aura:attribute name="searchResult" type="List" />
-   	<aura:attribute name="dt_from" type="String" />
-    <aura:attribute name="dt_to" type="String" />
+    
+    <aura:attribute name="userInfo" access="private" type="Object" />
+    <aura:attribute name="resultEvaluate" access="private" type="Object" />
+    <aura:attribute name="result" access="private" type="List" />
+   	<aura:attribute name="dtFrom" access="private" type="String" />
+    <aura:attribute name="dtTo" access="private" type="String" />
+    <aura:attribute name="comment" access="private" type="String" />
+    <aura:attribute name="errorMessage" access="private" type="Object[]" />
 
+    <div aura:id="spinner" class="slds-hide"><c:tmSpinner /></div>
+    
     <div class="slds-grid slds-m-bottom--large">
         <div class="slds-col">
             <div class="slds-grid">
                 <div class="slds-col--padded slds-size--1-of-12 slds-align-middle">評価期間</div>
                 <div class="slds-col--padded slds-size--3-of-12">
-                    <c:strike_datepicker label="From" valueFormat="yyyy-MM-dd" value="{!v.dt_from}" />
+                    <ui:inputDate aura:id="from" class="slds-input" displayDatePicker="true" value="{!v.dtFrom}" change="{!c.search}" />
                 </div>
                 <div class="slds-col--padded slds-size--3-of-12">
-                    <c:strike_datepicker label="To" valueFormat="yyyy-MM-dd" value="{!v.dt_to}" />
-                </div>
-                <div class="slds-col--padded slds-size--1-of-12 slds-align-middle">
-                    <button type="button" onclick="{!c.search}" class="slds-button slds-button--brand">検索</button>
+                    <ui:inputDate aura:id="to" class="slds-input" displayDatePicker="true" value="{!v.dtTo}" change="{!c.search}" />
                 </div>
             </div>
         </div>
@@ -42,37 +49,52 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td class="slds-text-align_center">
-                            <lightning:icon iconName="action:new_opportunity" size="large"/>
+                        <td class="slds-text-align--center">
+                           	<span class="slds-badge slds-theme--warning slds-text-color_inverse">
+                                <lightning:formattedNumber value="{!v.resultEvaluate.achievement}" />
+                            </span>
                         </td>
-                        <td class="slds-text-align_center">
-                            <lightning:icon iconName="action:share_thanks" size="large"/>
+                        <td class="slds-text-align--center">
+                            <span class="slds-badge slds-theme--error slds-text-color_inverse">
+                                <lightning:formattedNumber value="{!v.resultEvaluate.obliging}" />
+                            </span>
                         </td>
-                        <td class="slds-text-align_center">
-                            <lightning:icon iconName="action:update" size="large"/>
+                        <td class="slds-text-align--center">
+                            <span class="slds-badge slds-theme--success slds-text-color_inverse">
+                                <lightning:formattedNumber value="{!v.resultEvaluate.achievementOfTask}" />
+                            </span>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
+        
+        <aura:if isTrue="{!v.userInfo.Employee_Hiring__r.Permission__r.Name == 'Manager'}">
         <div class="slds-col slds-size--1-of-3 slds-medium-size--1-of-3">
             <div class="slds-form-element__control">
-                <textarea class="slds-textarea" rows="4" placeholder="総合評価コメント"></textarea>
+                <lightning:textArea placeholder="総合評価コメント" variant="standard" value="{!v.comment}"/>
+               	<div>
+                    <div class="slds-float_left">
+                        <span class="slds-text-color_error">{!v.errorMessage[0].comment_error}</span>
+                    </div>
+                    <div class="slds-float_right">
+                        <button class="slds-button slds-button_icon slds-button_icon-small slds-button_icon" title="Save" onclick="{!c.addItem}">
+                            <lightning:icon aura:id="save" variant="default" iconName="utility:save" size="xx-small" />
+                        </button>
+                        <button class="slds-button slds-button_icon slds-button_icon-small slds-button_icon" title="Cancel" onclick="{!c.cancel}">
+                            <lightning:icon aura:id="cancel" variant="default" iconName="utility:close" size="xx-small" />
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
+        </aura:if>
     </div>
     
     <table class="slds-table slds-table--bordered">
         <tbody>
-           <aura:iteration items="{! v.searchResult }" var="comment">
-            	<tr>
-                    <td style="width: 15%">{! comment.DateComment__c }</td>
-                    <td style="width: 10%">{! comment.Department__c }</td>
-                    <td style="width: 15%">{! comment.SubDepartment__c }</td>
-                    <td style="width: 15%">{! comment.Team__c  }</td>
-                    <td style="width: 15%">{! comment.Branch__c }</td>
-                    <td>{! comment.Comment__c } ({! comment.Author__c })</td>
-           		</tr>
+           <aura:iteration items="{!v.result}" var="item">
+               <c:tmEvaluationCommentBlock item="{!item}"/>
             </aura:iteration>
         </tbody>
     </table>

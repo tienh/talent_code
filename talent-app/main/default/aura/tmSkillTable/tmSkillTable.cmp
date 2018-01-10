@@ -1,9 +1,11 @@
 <aura:component controller="TMSkill" implements="forceCommunity:availableForAllPageTypes" access="global">
     <aura:handler name="init" value="{!this}" action="{!c.init}" />
+    
     <aura:attribute name="recordId" type="String"/>
     <aura:attribute name="tabId" type="String"/>
-    <aura:attribute name="resultSkillType" type="List" />
-    <aura:attribute name="resultSkillLevel" type="List" />
+    
+    <aura:attribute name="resultSkillType" access="private" type="List" />
+    <aura:attribute name="resultSkillLevel" access="private" type="List" />
     
     <table class="slds-table slds-table--bordered">
         <thead>
@@ -12,8 +14,8 @@
                 <aura:iteration items="{!v.resultSkillLevel}" var="skillLevel">
                     <td class="skill-level">
                         <h2 class="slds-text-align_center">
-                            <lightning:icon iconName="{!skillLevel.Icon__c}" size="small"/>
-                            &nbsp; {!skillLevel.Name}
+                            <lightning:icon iconName="{!skillLevel.Icon__c}" size="small"/>&nbsp;
+                            {!skillLevel.Name}
                         </h2>
                     </td>
                 </aura:iteration>
@@ -29,7 +31,7 @@
                     <aura:if isTrue="{!skillType.Expanded__c}">
                         <aura:iteration items="{!v.resultSkillLevel}" var="skillLevel">
                             <td class="slds-align-top">
-                                <c:tmCommentBlock recordId="{!v.recordId}" tabId="{!v.tabId}" typeId="{#skillType.Id}" modeId="{#skillLevel.Id}" />
+                                <c:tmCommentBlock recordId="{#v.recordId}" tabId="{#v.tabId}" typeId="{#skillType.Id}" modeId="{#skillLevel.Id}" />
                             </td>
                         </aura:iteration>
                 </aura:if>

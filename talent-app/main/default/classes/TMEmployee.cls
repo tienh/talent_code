@@ -13,7 +13,8 @@ global with sharing class TMEmployee {
                       ];
         r.employees = [SELECT Id, Name, user__c, User__r.Username, thumbnail__c, 
                        		Employee_Hiring__r.Job_Category__c, Employee_Hiring__r.Position__c, 
-                       		Employee_Hiring__r.Rank__c, Employee_Hiring__r.Rank_Ref__c
+                       		Employee_Hiring__r.Rank__c, Employee_Hiring__r.Rank_Ref__c,
+                       		Employee_Hiring__r.Rank_Ref_CM__c
                       FROM Employee__c
                       WHERE (Name LIKE :key OR Employee_Hiring__r.Rank__c LIKE :key)
                       ORDER BY user__c LIMIT :pSize OFFSET :offset];

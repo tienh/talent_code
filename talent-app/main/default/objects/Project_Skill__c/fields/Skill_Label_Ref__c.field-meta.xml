@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Skill_Label_Ref__c</fullName>
+    <externalId>false</externalId>
+    <formula>Employee_Skill__r.Skill__r.Name + "    " + TEXT(Skill_Level__r.Skill_Num__c)</formula>
+    <label>FML Skill Label</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

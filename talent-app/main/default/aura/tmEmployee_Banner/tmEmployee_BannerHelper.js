@@ -13,6 +13,12 @@
                 console.log('Page %d loaded in %fms', performance.now() - startTime);
                 if (result != null) {
                     component.set("v.employee", result[0]);
+                    
+                    // Set Rank path & Rating path
+                    var rankPath = $A.get('$Resource.' + result[0].Employee_Hiring__r.Rank_Ref_CM__c);
+                    var ratingPath = $A.get('$Resource.' + result[0].Employee_Hiring__r.Rating_Ref_CM__c);
+                    component.set("v.rankPath", rankPath);
+                    component.set("v.ratingPath", ratingPath);
                 }
             });
             var startTime = performance.now();

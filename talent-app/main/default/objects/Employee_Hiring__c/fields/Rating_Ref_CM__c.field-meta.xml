@@ -3,11 +3,11 @@
     <fullName>Rating_Ref_CM__c</fullName>
     <externalId>false</externalId>
     <formula>CASE(Rating__c , 
-5, "0687F000000lRDW", 
-4, "0687F000000lRDZ", 
-3, "0687F000000lRDV", 
-2, "0687F000000lRDU", 
-1, "0687F000000lRDP", 
+5, "rating_5", 
+4, "rating_4", 
+3, "rating_3", 
+2, "rating_2", 
+1, "rating_1", 
 "" 
 )</formula>
     <label>FML Rating Ref CM</label>

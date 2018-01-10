@@ -1,7 +1,7 @@
 <!--
 Strike by Appiphony
 
-Version: 0.10.0
+Version: 1.0.0
 Website: http://www.lightningstrike.io
 GitHub: https://github.com/appiphony/Strike-Components
 License: BSD 3-Clause License
@@ -13,7 +13,8 @@ License: BSD 3-Clause License
     <aura:attribute name="placeholder" type="String" description="placeholder text that will be displayed on the input field when the component is initialized"/>
     <aura:attribute name="class" type="String" description="A CSS class that will be applied to the outer element. This style is in addition to base classes associated with the component"/>
     <aura:attribute name="value" type="String" description="semi-colon separated values that reflect the selected pills"/>
-
+	<aura:attribute name="selectedOptionPills" type="Object[]" description="pills to be populated when an option is selected from the dropdown"/>
+    
     <aura:attribute name="errorMessage" type="String" description="message to be displayed when the component is in an error state"/>
 
     <aura:attribute name="disabled" type="Boolean" description="Can be toggled to make the field disabled"/>
@@ -34,7 +35,6 @@ License: BSD 3-Clause License
     <aura:attribute name="idNumber" type="Integer" access="private" description="Random id assigned to pair labels with inputs"/>
     <aura:attribute name="focusIndex" type="Integer" access="private" default="-1" description="Index to determine focus location when keyboard is used"/>
     <aura:attribute name="menuIsOpen" type="Boolean" access="private" description="toggles the slds-is-open class for the lookup menu"/>
-    <aura:attribute name="selectedOptionPills" type="Object[]" access="private" description="pills to be populated when an option is selected from the dropdown"/>
     <aura:attribute name="validChildCmps" type="Object[]" access="private" description="stores valid child components to utilize when an iterator is used"/>
     <aura:attribute name="alreadyRendered" type="Boolean" access="private" description="is set to true after the initial render"/>
     <aura:attribute name="isMobile" type="Boolean" default="{!false}" description="Determines if the user is in Salesforce1" access="private"/>
@@ -82,9 +82,6 @@ License: BSD 3-Clause License
                     onkeyup="{!c.handleOnkeyup}"
                     disabled="{!v.disabled}"/>
             </div>
-            <aura:if isTrue="{!and(v.error, not(empty(v.errorMessage)))}">
-                <div class="slds-form-element__help">{!v.errorMessage}</div>
-            </aura:if>
         </div>
 
         <ui:scrollerWrapper class="slds-lookup__menu" aura:id="scrollerWrapper">
@@ -126,10 +123,17 @@ License: BSD 3-Clause License
                 {!v.body}
             </ul>
         </ui:scrollerWrapper>
+        
+        <aura:if isTrue="{!and(v.error, not(empty(v.errorMessage)))}">
+            <div class="{!'slds-form-element' + (v.error ? ' slds-has-error' : '')}">
+                <div class="slds-form-element__help">{!v.errorMessage}</div>
+            </div>
+        </aura:if>
+
         <aura:if isTrue="{!not(empty(v.selectedOptionPills))}">
             <div aura:id="optionPillContainer" class="slds-pill_container slds-pill_container--bare slds-wrap">
                 <aura:iteration items="{!v.selectedOptionPills}" var="pill">
-                    <span class="smsp-pill"><c:strike_pill label="{!pill.label}" value="{!pill.value}" iconName="{!pill.iconName}" destroyable="{!pill.destroyable}" /></span>
+                    <span class="smsp-pill"><c:strike_pill label="{!pill.label}" value="{!pill.value}" iconName="{!pill.iconName}" destroyable="{!and(not(v.disabled), pill.destroyable)}" /></span>
                 </aura:iteration>
             </div>
         </aura:if>

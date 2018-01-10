@@ -2,7 +2,7 @@
     <aura:handler name="init" value="{!this}" action="{!c.init}" />
     <aura:attribute name="recordId" type="String"/>
     <aura:attribute name="emp" type="Object"/>
-    <aura:attribute name="choosen" type="Boolean"/>
+    <aura:attribute name="chosen" type="Boolean"/>
     <aura:attribute name="cssClass" type="Boolean"/>
     
     <div class="{!v.cssClass}" onclick="{!c.navigateChangeView}">

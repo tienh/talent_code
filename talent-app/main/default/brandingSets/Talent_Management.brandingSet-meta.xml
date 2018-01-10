@@ -34,7 +34,7 @@
     </brandingSetProperty>
     <brandingSetProperty>
         <propertyName>CompanyLogo</propertyName>
-        <propertyValue>/file-asset/pivot_logo1?v=1&amp;height=300&amp;width=300</propertyValue>
+        <propertyValue/>
     </brandingSetProperty>
     <brandingSetProperty>
         <propertyName>_ActionColorTrans</propertyName>
@@ -92,6 +92,6 @@
         <propertyName>_brandNavigationItemDividerColor</propertyName>
         <propertyValue>rgba(255, 255, 255, 0.2)</propertyValue>
     </brandingSetProperty>
-    <masterLabel>Talent_Management</masterLabel>
+    <masterLabel>new</masterLabel>
     <type>starter:branding-starter</type>
 </BrandingSet>

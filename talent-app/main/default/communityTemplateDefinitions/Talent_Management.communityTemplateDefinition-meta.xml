@@ -2,21 +2,21 @@
 <CommunityTemplateDefinition xmlns="http://soap.sforce.com/2006/04/metadata">
     <baseTemplate>c</baseTemplate>
     <bundlesInfo>
-        <description>First demo</description>
+        <description>Regeneration v.0.1</description>
         <order>1</order>
-        <title>Demo Ver. 0.1</title>
+        <title>Ver 0.1</title>
         <type>Highlight</type>
     </bundlesInfo>
     <bundlesInfo>
-        <image>siteAsset_9897308ee1294e0d91b4090da2dba33d</image>
+        <image>siteAsset_2931314ce94045dbbe9cc5858304c1b1</image>
         <order>1</order>
-        <title>siteAsset_9897308ee1294e0d91b4090da2dba33d</title>
+        <title>siteAsset_2931314ce94045dbbe9cc5858304c1b1</title>
         <type>PreviewImage</type>
     </bundlesInfo>
     <category>IT</category>
     <defaultBrandingSet>Talent_Management</defaultBrandingSet>
     <defaultThemeDefinition>Talent_Management</defaultThemeDefinition>
-    <description>First demo build for Talent Management</description>
+    <description>First demo of Talent Management</description>
     <enableExtendedCleanUpOnDelete>true</enableExtendedCleanUpOnDelete>
     <masterLabel>Talent Management</masterLabel>
     <pageSetting>
@@ -62,6 +62,10 @@
     <pageSetting>
         <page>Talent_Management_Register</page>
         <themeLayout>Talent_Management_themeLayout_Login</themeLayout>
+    </pageSetting>
+    <pageSetting>
+        <page>Talent_Management_Chat_Group</page>
+        <themeLayout>Talent_Management_themeLayout_Inner</themeLayout>
     </pageSetting>
     <pageSetting>
         <page>Talent_Management_Canvasapp_Page</page>

@@ -3,13 +3,13 @@
     <fullName>Rank_Ref_CM__c</fullName>
     <externalId>false</externalId>
     <formula>CASE(Rank__c , 
-"S", "0687F000000lRD1", 
-"A", "0687F000000lRCv", 
-"B", "0687F000000lRCw", 
-"C", "0687F000000lRCx", 
-"D", "0687F000000lRCy", 
-"E", "0687F000000lRCz", 
-"F", "0687F000000lRD0", 
+"S", "rank_s", 
+"A", "rank_a", 
+"B", "rank_b", 
+"C", "rank_c", 
+"D", "rank_d", 
+"E", "rank_e", 
+"F", "rank_f", 
 "" 
 )</formula>
     <label>FML Rank Ref CM</label>

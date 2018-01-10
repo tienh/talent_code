@@ -1,5 +1,11 @@
 ({
+    ToggleSpinnerHelper : function(component,event) {
+    	$A.util.toggleClass(component.find("spinner"), "slds-hide");
+   	},
+    
 	FetchDataHelper: function(component, event) {
+        this.ToggleSpinnerHelper(component, event);
+        
         var action = null;
         switch(component.get("v.tabId"))
         {
@@ -9,29 +15,29 @@
            	case "tab-scoped-2":
                 action = component.get("c.fetchPersonalityComment");
                 break;
-            case "tab-scoped-3":
-                action = component.get("c.fetchEvaluationComment");
-                break;
         }
         action.setParams({
             'employeeId': component.get("v.recordId"),
             'typeId': component.get("v.typeId"),
             'modeId': component.get("v.modeId"),
-            'top': component.get("v.top"),
-            'skip': component.get("v.skip")
+            'year': component.get("v.year")
         });
         action.setCallback(this, function(response) {
             var state = response.getState();
             if (state === "SUCCESS") {
+                var result = [{ year: component.get("v.year"), comments: response.getReturnValue()[1] }];
                 component.set("v.count", response.getReturnValue()[0]);
-                component.set("v.result", response.getReturnValue()[1]);
+                component.set("v.result", result);
             }
         });
+        this.ToggleSpinnerHelper(component, event);
         
         $A.enqueueAction(action);
     },
     
     GetMoreDataHelper: function(component, event) {
+        this.ToggleSpinnerHelper(component, event);
+        
         var action = null;
         switch(component.get("v.tabId"))
         {
@@ -41,25 +47,23 @@
            	case "tab-scoped-2":
                 action = component.get("c.fetchPersonalityComment");
                 break;
-            case "tab-scoped-3":
-                action = component.get("c.fetchEvaluationComment");
-                break;
         }
-        component.set("v.skip", (parseInt(component.get("v.skip")) + parseInt(component.get("v.top"))).toString());
+        component.set("v.year", (parseInt(component.get("v.year")) - 1).toString());
         action.setParams({
             'employeeId': component.get("v.recordId"),
             'typeId': component.get("v.typeId"),
             'modeId': component.get("v.modeId"),
-            'top': component.get("v.top"),
-            'skip': component.get("v.skip")
+            'year': component.get("v.year")
         });
         action.setCallback(this, function(response) {
             var state = response.getState();
             if (state === "SUCCESS") {
+                var result = [{ year: component.get("v.year"), comments: response.getReturnValue()[1] }];
                 component.set("v.count", response.getReturnValue()[0]);
-                component.set("v.result", component.get("v.result").concat(response.getReturnValue()[1]));
+                component.set("v.result", component.get("v.result").concat(result));
             }
         });
+        this.ToggleSpinnerHelper(component, event);
         
         $A.enqueueAction(action);
     }

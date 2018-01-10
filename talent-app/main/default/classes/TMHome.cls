@@ -20,4 +20,12 @@ public class TMHome {
             Site.getBaseInsecureUrl()
         };
     }
+    
+    public static Employee__c getCurrentUser() {
+        return getUserInfo();
+    }
+    
+    public static Boolean isManager() {
+        return getUserInfo().Employee_Hiring__r.Permission__r.Name == 'Manager';
+    }
 }

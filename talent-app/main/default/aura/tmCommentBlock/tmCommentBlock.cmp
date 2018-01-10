@@ -1,38 +1,57 @@
 <aura:component controller="TMComment" implements="forceCommunity:availableForAllPageTypes" access="global">
     <aura:handler name="init" value="{!this}" action="{!c.init}" />
-    <aura:attribute name="userInfo" type="Object" />
+    <aura:handler name="toggleSpinner" event="c:tmToggleSpinnerEvt" action="{!c.toggleSpinner}" />
+    
     <aura:attribute name="recordId" type="String"/>
     <aura:attribute name="tabId" type="String"/>
     <aura:attribute name="typeId" type="String" />
     <aura:attribute name="modeId" type="String" />
-    <aura:attribute name="top" type="String" default="3" />
-    <aura:attribute name="skip" type="String" default="0" />
-    <aura:attribute name="count" type="Integer" />
-    <aura:attribute name="result" type="List" />
+    
+    <aura:attribute name="userInfo" access="private" type="Object" />
+    <aura:attribute name="currentYear" access="private" type="String" />
+    <aura:attribute name="year" access="private" type="String" />
+    <aura:attribute name="count" access="private" type="Integer" />
+    <aura:attribute name="result" access="private" type="List" />
+    
+    <div aura:id="spinner" class="slds-hide"><c:tmSpinner /></div>
     
     <aura:if isTrue="{!v.userInfo.Employee_Hiring__r.Permission__r.Name == 'Manager'}">
-    <c:tmOverlayAddComment editMode="1" result="{!v.result}" recordId="{!v.recordId}" tabId="{!v.tabId}" typeId="{#v.typeId}" modeId="{#v.modeId}" skip="{!v.skip}" />
+        <c:tmOverlayAddComment editMode="1" result="{!v.result}" recordId="{#v.recordId}" tabId="{#v.tabId}" typeId="{#v.typeId}" modeId="{#v.modeId}" />
+        <br/>
     </aura:if>
     
-    <aura:iteration items="{!v.result}" var="item">
-        <div class="slds-m-top_medium slds-m-bottom_medium slds-cell-wrap">
-            <aura:iteration items="{!v.tabId == 'tab-scoped-1' ? item.Skill_Comments__r : item.Personality_Comments__r}" var="tag">
-            <a href="javascript：void(0)">#{!tag.Tag_ID__r.Name}</a>&nbsp;
-            </aura:iteration>
-            <aura:if isTrue="{!v.tabId == 'tab-scoped-1'}">
-            <span>{!item.Create_By__r.Employee_Hiring__r.Team__c}チーム</span>
-            </aura:if>
-            <p>{!item.Name}</p>
-            <p>
-                ({!item.Create_When_Disp__c}&nbsp;{!item.Create_By__r.Name})&nbsp;
-                <aura:if isTrue="{!v.userInfo.Id == item.Create_By__c}">
-                    <c:tmOverlayAddComment editMode="2" result="{!v.result}" recordId="{!v.recordId}" tabId="{!v.tabId}" itemId="{!item.Id}" typeId="{#v.typeId}" modeId="{#v.modeId}" skip="{!v.skip}" /> 
+    <aura:iteration items="{!v.result}" var="element">
+        <aura:if isTrue="{!notequals(element.year, v.currentYear)}">
+        <div class="slds-m-top--medium"></div>
+        <c:strike_badge class="slds-align_absolute-center" label="{!element.year}" theme="alt-inverse" />
+        </aura:if>
+        <aura:if isTrue="{!greaterthan(element.comments.length, 0)}">
+            <aura:iteration items="{!element.comments}" var="item">
+            <div class="slds-m-top_medium slds-m-bottom_medium slds-cell-wrap">
+                <aura:iteration items="{!v.tabId == 'tab-scoped-1' ? item.Skill_Comments__r : item.Personality_Comments__r}" var="tag">
+                    <a href="javascript：void(0)">#{!tag.Tag_ID__r.Name}</a>&nbsp;
+                </aura:iteration>
+                <aura:if isTrue="{!v.tabId == 'tab-scoped-1'}">
+                    <span>{!item.Create_By__r.Employee_Hiring__r.Team__c}チーム</span>
                 </aura:if>
-             </p>
-        </div>
+                <p>{!item.Name}</p>
+                <p>
+                    ({!item.Create_When_Disp__c}&nbsp;{!item.Create_By__r.Name})&nbsp;
+                    <aura:if isTrue="{!and(v.userInfo.Employee_Hiring__r.Permission__r.Name == 'Manager', v.userInfo.Id == item.Create_By__c)}">
+                        <c:tmOverlayAddComment editMode="2" result="{!v.result}" recordId="{#v.recordId}" tabId="{#v.tabId}" itemId="{#item.Id}" typeId="{#v.typeId}" modeId="{#v.modeId}" /> 
+                    </aura:if>
+                </p>
+            </div>
+            </aura:iteration>
+            <aura:set attribute="else">
+                <aura:if isTrue="{!notequals(element.year, v.currentYear)}">
+                <div class="slds-m-top--medium slds-m-bottom--medium">データがありません。</div>
+                </aura:if>
+            </aura:set>
+        </aura:if>
     </aura:iteration>
     
-    <aura:if isTrue="{!and(greaterthan(v.count, v.top), lessthan(v.result.length, v.count))}">
-    <button class="slds-button" onclick="{!c.getMore}">Read more</button>
+    <aura:if isTrue="{!greaterthanorequal(v.count, 1)}">
+        <button class="slds-button" onclick="{!c.getMore}">Read more</button>
     </aura:if>
 </aura:component>

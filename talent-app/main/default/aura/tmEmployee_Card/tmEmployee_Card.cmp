@@ -1,16 +1,19 @@
 <aura:component >
-	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
     <aura:attribute name="employee" type="Employee__c"/>
     <aura:attribute name="myPath" type="String" />
+    <aura:attribute name="rankPath" type="String" />
 
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     <aura:registerEvent name="navigateToSObject" type="force:navigateToSObject"/>
     <aura:registerEvent name="selectSObject" type="ltng:selectSObject"/>
 
 	<a onclick="{!c.employeeSelected}">
     	<div style="{# 'background-image:url(' + v.employee.Thumbnail__c + ')'}">
             <div>
-                <img class="rank-pos"
-                     src="{#v.myPath + '/servlet/servlet.FileDownload?file=' + v.employee.Employee_Hiring__r.Rank_Ref__c }"/>
+                <img class="rank-pos" src="{! v.rankPath }"/>
+                <!--<img class="rank-pos"
+                     src="{#v.myPath + '/servlet/servlet.FileDownload?file=' + v.employee.Employee_Hiring__r.Rank_Ref__c }"/>-->
             </div>
         	<div class="lower-third">
             	<h1 class="truncate">{#v.employee.Name}</h1>

@@ -1,9 +1,10 @@
 <aura:component controller="TMEmployee"
                 implements="flexipage:availableForRecordHome,forceCommunity:availableForAllPageTypes,force:hasRecordId" access="global" >
     
-    <aura:attribute name="recordId" type="String"/>
     <aura:attribute name="employee" type="Object" />
-    <aura:attribute name="emp" type="Object" />
+    <aura:attribute name="rankPath" type="String" />
+    <aura:attribute name="ratingPath" type="String" />
+    
     <aura:handler name="init" value="{!this}" action="{!c.init}" />
     
 	<article class="slds-card">
@@ -19,14 +20,14 @@
                         <a href="javascript:void(0);" class="slds-card__header-link slds-truncate">
                             <span class="slds-text-heading_small">Base Information</span>
                         </a>&nbsp;
-                        <!--<ui:outputText class="form-control" aura:id="recid" value="{!v.recordId}" />-->
+                        <!--<ui:outputText class="form-control" aura:id="recId" value="{!v.recordId}" />-->
                         <c:tmEmployeeList recordId="{!v.recordId}" />
                     </h2>
                 </div>
             </header>
-            <div class="slds-no-flex">
+            <!--<div class="slds-no-flex">
                 <button class="slds-button slds-button_neutral">Edit</button>
-            </div>
+            </div>-->
         </div>
         <div class="slds-card__body slds-card__body_inner">
             <table class="slds-table slds-max-medium-table_stacked-horizontal">
@@ -37,7 +38,6 @@
                                 <span>
                                     <img src="{! v.employee.Picture__c }" alt="Picture" border="0" class="banner-img" />
                                 </span>
-                                <!--<lightning:icon iconName="action:user" size="large"/>-->
                             </div>
                         </th>
                         <td class="slds-text-align_center">
@@ -57,10 +57,8 @@
                             <div class="slds-m-top_medium slds-m-bottom_medium slds-cell-wrap">
                                 <p>社内ランク</p>
                                 <p>
-                                    <!--<lightning:icon iconName="standard:feed" size="large"/>-->
                                     <span>
-                                        <img src="{! '/tm/servlet/servlet.FileDownload?file=' + 
-                                                  v.employee.Employee_Hiring__r.Rank_Ref__c }" width="60" alt="Rank" border="0" />
+                                        <img src="{! v.rankPath }" width="60" alt="Rank" border="0" />
                                     </span>
                                 </p>
                             </div>
@@ -69,10 +67,10 @@
                             <div class="slds-m-top_medium slds-m-bottom_medium slds-cell-wrap">
                                 <p>最近の成果</p>
                                 <p>
-                                    <!--<lightning:icon iconName="standard:thanks" size="large"/>-->
                                     <span>
-                                        <img src="{! '/tm/servlet/servlet.FileDownload?file=' + 
-                                                  v.employee.Employee_Hiring__r.Rating_Ref__c }" width="142" alt="Rating" border="0" />
+                                        <img src="{! v.ratingPath }" width="142" alt="Rating" border="0" />
+                                        <!--<img src="{! '/tm/servlet/servlet.FileDownload?file=' + 
+                                                  v.employee.Employee_Hiring__r.Rating_Ref__c }" width="142" alt="Rating" border="0" />-->
                                         <!--<img src="{! '/tm/sfc/servlet.shepherd/version/download/' + 
                                                   v.employee.Employee_Hiring__r.Rating_Ref_CM__c }" width="142" alt="Rating" border="0" />-->
                                     </span>
